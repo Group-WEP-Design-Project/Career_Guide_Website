@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career | Career Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="./src/style.css">
+
+</head>
+
+<body class="bg-slate-50 font-[Poppins] text-slate-900 leading-relaxed">
+  <div class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div class="relative mx-auto flex min-h-[76px] w-[calc(100%-32px)] max-w-[1180px] items-center justify-between gap-6">
+        <a href="./index.html" aria-label="Career Guide home">
+          <img src="./img/logo.png" alt="Career Guide" class="w-[145px]">
+        </a>
+
+        <nav id="main-nav" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-lg lg:static lg:flex lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-2 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none" aria-label="Main navigation">
+          <a href="./index.html"
+            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">Home</a>
+          <a href="./internship.html"
+            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">Internships</a>
+          <a href="./Career.html" aria-current="page"
+            class="rounded-xl bg-green-50 px-4 py-2.5 text-sm font-semibold text-green-700">Career
+            Guide</a>
+          <a href="./resources.html"
+            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">Resources</a>
+          <a href="./profile.html"
+            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">My
+            Profile</a>
+        </nav>
+        <a href="./login.html"
+          class="hidden items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-5 py-3 font-semibold text-teal-700 lg:inline-flex">Login</a>
+        <button id="menu-toggle" type="button"
+          class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-xl border border-slate-200 bg-white lg:hidden"
+          aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="bg-green-600/5 py-10 pb-5">
+        <div class="w-[calc(100%-32px)] max-w-[1180px] mx-auto">
+          <h1 class="text-4xl font-bold leading-tight mb-3">Explore Your Career Path</h1>
+          <p class="text-slate-600">Discover careers, required skills, and learning paths to help you prepare for your
+            future.</p>
+        </div>
+      </section>
+
+      <section class="py-[72px] pt-3">
+        <div class="w-[calc(100%-32px)] max-w-[1180px] mx-auto">
+          <div class="relative max-w-[500px] mb-[26px]">
+            <input type="text" placeholder="Search for a career" />
+          </div>
+
+          <div class="mb-7">
+            <h2 class="text-3xl font-bold leading-tight mb-3">Career Categories</h2>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Technology</h3>
+              <p class="text-slate-600">Explore software, data, and digital careers powering the modern world.</p>
+            </article>
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-palette" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Design</h3>
+              <p class="text-slate-600">Build visual experiences and shape how people interact with digital products.
+              </p>
+            </article>
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Business</h3>
+              <p class="text-slate-600">Develop strategic thinking, communication, and operational leadership skills.
+              </p>
+            </article>
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-bullhorn" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Marketing</h3>
+              <p class="text-slate-600">Create brand strategies and digital campaigns that connect with audiences.</p>
+            </article>
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Data</h3>
+              <p class="text-slate-600">Analyze, model, and interpret information to make smarter business decisions.
+              </p>
+            </article>
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-folder" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Administration</h3>
+              <p class="text-slate-600">Support teams with planning, operations, and effective organizational systems.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-[72px]">
+        <div class="w-[calc(100%-32px)] max-w-[1180px] mx-auto">
+          <div class="grid grid-cols-[1.2fr_.8fr] gap-6 mt-5 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
+            <article class="rounded-3xl border border-slate-200 bg-white p-7 shadow-lg">
+              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
+              <h2 class="text-3xl font-bold leading-tight mb-3">Web Developer</h2>
+              <p class="text-slate-600">Build modern, responsive websites and applications that deliver great user
+                experiences.</p>
+
+              <h3 class="text-xl font-semibold leading-tight mb-3">Career Overview</h3>
+              <p class="text-slate-600">Web developers design and build websites, from layout and styling to front-end
+                logic and back-end integration. They often work in teams to deliver digital products for businesses,
+                organizations, and communities.</p>
+
+              <h3 class="text-xl font-semibold leading-tight mb-3">What Does This Career Do?</h3>
+              <ul class="grid gap-3 list-none mt-4 pl-0">
+                <li>Develop user interfaces and interactive page elements.</li>
+                <li>Collaborate with designers and developers to ship features.</li>
+                <li>Test and optimize websites for responsiveness and performance.</li>
+              </ul>
+
+              <h3 class="text-xl font-semibold leading-tight mb-3">Required Skills</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">HTML</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">CSS</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">JavaScript</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">React</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Git</span>
+              </div>
+
+              <h3 class="text-xl font-semibold leading-tight mb-3">Technical Skills</h3>
+              <ul class="grid gap-3 list-none mt-4 pl-0">
+                <li>Responsive design principles</li>
+                <li>Frontend frameworks like React</li>
+                <li>Version control and debugging</li>
+              </ul>
+
+              <h3 class="text-xl font-semibold leading-tight mb-3">Soft Skills</h3>
+              <ul class="grid gap-3 list-none mt-4 pl-0">
+                <li>Problem-solving</li>
+                <li>Communication</li>
+                <li>Teamwork and adaptability</li>
+              </ul>
+
+              <h3 class="text-xl font-semibold leading-tight mb-3">Learning Path</h3>
+              <div class="flex items-center justify-between gap-2 mt-4 flex-wrap">
+                <div
+                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 bg-green-50 text-green-600 font-semibold">
+                  Learn</div>
+                <div
+                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 bg-green-50 text-green-600 font-semibold">
+                  Practice</div>
+                <div
+                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 bg-green-50 text-green-600 font-semibold">
+                  Build Projects</div>
+                <div
+                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 pending">
+                  Internship</div>
+                <div
+                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500">
+                  Job</div>
+              </div>
+            </article>
+
+            <aside class="grid gap-5">
+              <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg h-[350px]">
+                <h3 class="text-xl font-semibold leading-tight mb-3">Career Details</h3>
+                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5"><span>Career
+                    Level</span><strong>Entry-level</strong></div>
+                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5">
+                  <span>Growth</span><strong>High</strong></div>
+                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5">
+                  <span>Skills</span><strong>Frontend, UI, UX</strong></div>
+                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5">
+                  <span>Path</span><strong>Learn <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Practice <i
+                      class="fa-solid fa-arrow-right" aria-hidden="true"></i> Build <i class="fa-solid fa-arrow-right"
+                      aria-hidden="true"></i> Internship</strong></div>
+              </div>
+
+              <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg h-[350px]">
+                <h3 class="text-xl font-semibold leading-tight mb-3">Related Internships</h3>
+                <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600 grid gap-2.5">
+                  <span
+                    class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600 w-fit">Frontend
+                    Developer Intern</span>
+                  <span
+                    class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600 w-fit">UI
+                    Developer Intern</span>
+                  <span
+                    class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600 w-fit">Product
+                    Design Intern</span>
+                </div>
+                <div class="flex flex-wrap gap-2.5 mt-[18px]">
+                  <button
+                    class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold bg-green-600 text-white shadow-lg shadow-green-600/20 w-full">Apply
+                    Now</button>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-auto bg-[black] text-white/80">
+      <div
+        class="mx-4 flex min-h-[72px] flex-col items-start gap-5 py-6 md:mx-8 md:flex-row md:items-center md:justify-between md:py-0 lg:mx-[128px]">
+        <img src="./img/logo dark mode.jpg" alt="Career Guide" class="w-[200px] max-w-full">
+        <div class="flex w-full flex-wrap items-center gap-x-5 gap-y-3 md:w-auto md:justify-end">
+          <a href="./index.html">Home</a>
+          <a href="./internship.html">Internships</a>
+          <a href="#">Career Guide</a>
+          <a href="./resources.html">Resources</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script type="module" src="./src/main.ts"></script>
+
+</body>
+
+</html>
