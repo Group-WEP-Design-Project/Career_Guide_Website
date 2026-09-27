@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Internship & Career Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body class="min-h-screen bg-[#e8ffeb] font-[Poppins] text-slate-900 leading-relaxed">
+    <main class="grid min-h-screen place-items-center px-5 py-8">
+      <section class="w-full max-w-[480px] rounded-[20px] bg-white px-6 py-7 sm:px-8" aria-labelledby="login-title">
+        <a href="./index.html" class="mb-6 inline-flex items-center" aria-label="Career Guide home">
+          <img src="./img/logo.png" alt="Career Guide" class="h-auto w-[132px]" />
+        </a>
+
+        <div class="mb-5 text-center">
+          <h1 id="login-title" class="text-2xl font-semibold leading-tight">Welcome back</h1>
+          <p class="mt-1 text-sm text-slate-700">Sign in to continue your career journey</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="email" class="mb-1.5 block text-xs font-medium">Email</label>
+            <input id="email" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-4 py-3.5 text-sm outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="email" name="email" placeholder="Enter your email" autocomplete="email" required />
+          </div>
+
+          <div class="mb-2">
+            <label for="password" class="mb-1.5 block text-xs font-medium">Password</label>
+            <input id="password" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-4 py-3.5 text-sm outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required />
+          </div>
+
+          <div class="mb-4 flex items-center justify-between gap-3 text-[10px] text-slate-600">
+            <label class="inline-flex items-center gap-1.5">
+              <input type="checkbox" class="accent-[#19bd5d]" />
+              <span>Remember Me</span>
+            </label>
+            <a href="#" class="font-medium text-sky-600 hover:underline">Forgot Password?</a>
+          </div>
+
+          <p id="loginError" class="mb-3 text-sm text-red-600" role="alert" hidden></p>
+
+          <button type="submit" class="inline-flex w-full items-center justify-center rounded-lg bg-[#19bd5d] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#13a950] focus:outline-none focus:ring-4 focus:ring-[#19bd5d]/25">Login</button>
+        </form>
+
+        <p class="mt-3 text-center text-[10px] text-slate-600">
+          Don't have an account? <a href="./resgister.html" class="font-medium text-[#19a957] hover:underline">Create Account</a>
+        </p>
+      </section>
+    </main>
+    <script type="module" src="/src/login.ts"></script>
+  </body>
+</html>
+
+
