@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | Internship & Career Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+
+</head>
+
+<body class="min-h-screen bg-[#e8ffeb] font-[Poppins] text-slate-900 leading-relaxed">
+    <main class="grid min-h-screen place-items-center px-4 py-6">
+        <section class="w-full max-w-[380px] rounded-[20px] bg-white px-5 py-5 sm:px-6" aria-labelledby="register-title">
+            <a href="./index.html" class="mb-3 inline-flex items-center" aria-label="Career Guide home">
+                <img src="./img/logo.png" alt="Career Guide" class="h-auto w-[118px]" />
+            </a>
+
+            <div class="mb-3 text-center">
+                <h1 id="register-title" class="text-xl font-semibold leading-tight">Create your account</h1>
+                <p class="mt-0.5 text-xs text-slate-700">Start exploring internships and careers</p>
+            </div>
+
+            <form id="registerForm" class="space-y-2.5">
+                <div>
+                    <label for="fullName" class="mb-1 block text-[11px] font-medium">Full Name</label>
+                    <input id="fullName" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-3.5 py-3 text-xs outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="text" placeholder="Enter your full name" autocomplete="name" required />
+                </div>
+                <div>
+                    <label for="email" class="mb-1 block text-[11px] font-medium">Email</label>
+                    <input id="email" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-3.5 py-3 text-xs outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="email" placeholder="Enter your email" autocomplete="email" required />
+                </div>
+                <div>
+                    <label for="password" class="mb-1 block text-[11px] font-medium">Password</label>
+                    <input id="password" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-3.5 py-3 text-xs outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="password" placeholder="Create a password" autocomplete="new-password" required />
+                </div>
+                <div>
+                    <label for="confirmPassword" class="mb-1 block text-[11px] font-medium">Confirm Password</label>
+                    <input id="confirmPassword" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-3.5 py-3 text-xs outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="password" placeholder="Confirm your password" autocomplete="new-password" required />
+                </div>
+                <div>
+                    <label for="university" class="mb-1 block text-[11px] font-medium">University / School</label>
+                    <input id="university" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-3.5 py-3 text-xs outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="text" placeholder="Enter your university / school" required />
+                </div>
+                <div>
+                    <label for="major" class="mb-1 block text-[11px] font-medium">Major</label>
+                    <input id="major" class="w-full rounded-lg border border-transparent bg-[#dcf9f6] px-3.5 py-3 text-xs outline-none transition focus:border-[#19bd5d] focus:ring-2 focus:ring-[#19bd5d]/20" type="text" placeholder="Enter your major" required />
+                </div>
+                <button type="submit" class="inline-flex w-full items-center justify-center rounded-lg bg-[#19bd5d] px-5 py-3 text-xs font-medium text-white transition hover:bg-[#13a950] focus:outline-none focus:ring-4 focus:ring-[#19bd5d]/25">Create Account</button>
+            </form>
+
+            <p class="mt-2 text-center text-[9px] text-slate-600">
+                Already have an account? <a href="./login.html" class="font-medium text-[#19a957] hover:underline">Login</a>
+            </p>
+        </section>
+    </main>
+    <script type="module" src="/src/register.ts"></script>
+</body>
+
+</html>
