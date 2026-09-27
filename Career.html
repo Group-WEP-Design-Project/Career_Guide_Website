@@ -16,30 +16,30 @@
 <body class="bg-slate-50 font-[Poppins] text-slate-900 leading-relaxed">
   <div class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div class="relative mx-auto flex min-h-[76px] w-[calc(100%-32px)] max-w-[1180px] items-center justify-between gap-6">
+      <div class="relative mx-auto flex min-h-[76px] w-[calc(100%-32px)] max-w-[1180px] items-center justify-between gap-2">
         <a href="./index.html" aria-label="Career Guide home">
           <img src="./img/logo.png" alt="Career Guide" class="w-[145px]">
         </a>
 
-        <nav id="main-nav" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-lg lg:static lg:flex lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-2 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none" aria-label="Main navigation">
+        <nav id="main-nav" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-lg md:static md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-1 md:border-0 md:bg-transparent md:p-0 md:shadow-none" aria-label="Main navigation">
           <a href="./index.html"
-            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">Home</a>
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">Home</a>
           <a href="./internship.html"
-            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">Internships</a>
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">Internships</a>
           <a href="./Career.html" aria-current="page"
-            class="rounded-xl bg-green-50 px-4 py-2.5 text-sm font-semibold text-green-700">Career
+            class="whitespace-nowrap rounded-xl bg-green-50 px-2 py-2 text-xs font-semibold text-green-700 lg:px-3 lg:text-sm">Career
             Guide</a>
           <a href="./resources.html"
-            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">Resources</a>
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">Resources</a>
           <a href="./profile.html"
-            class="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-600">My
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">My
             Profile</a>
         </nav>
         <a href="./login.html"
-          class="hidden items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-5 py-3 font-semibold text-teal-700 lg:inline-flex">Login</a>
-        <button id="menu-toggle" type="button"
-          class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-xl border border-slate-200 bg-white lg:hidden"
-          aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+        <button id="menu-toggle" type="button" aria-controls="main-nav"
+          class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-xl border border-slate-200 bg-white md:hidden"
+          aria-label="Open navigation menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
       </div>
     </header>
 
@@ -55,7 +55,7 @@
       <section class="py-[72px] pt-3">
         <div class="w-[calc(100%-32px)] max-w-[1180px] mx-auto">
           <div class="relative max-w-[500px] mb-[26px]">
-            <input type="text" placeholder="Search for a career" />
+            <input type="search" data-career-search placeholder="Search for a career" aria-label="Search careers" />
           </div>
 
           <div class="mb-7">
@@ -107,30 +107,35 @@
         </div>
       </section>
 
-      <section class="py-[72px]">
-        <div class="w-[calc(100%-32px)] max-w-[1180px] mx-auto">
-          <div class="grid grid-cols-[1.2fr_.8fr] gap-6 mt-5 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
-            <article class="rounded-3xl border border-slate-200 bg-white p-7 shadow-lg">
-              <div class="grid place-items-center w-[58px] h-[58px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
-                  class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
-              <h2 class="text-3xl font-bold leading-tight mb-3">Web Developer</h2>
-              <p class="text-slate-600">Build modern, responsive websites and applications that deliver great user
-                experiences.</p>
+      <section class="pb-[72px] pt-3">
+        <div class="w-[calc(100%-32px)] max-w-[1450px] mx-auto">
+          <div class="mx-4 mt-5 grid gap-6 md:mx-8 lg:mx-[128px] lg:grid-cols-[1.2fr_.8fr] max-[680px]:grid-cols-1">
+            <article class="rounded-[22px] border border-slate-200 bg-white p-6 shadow-lg md:p-7">
+              <div class="mb-5 flex items-center gap-4">
+                <div class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-green-600/10 text-xl text-green-700">
+                  <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="mb-1 text-xs font-semibold uppercase text-green-700">Technology career</p>
+                  <h2 class="text-3xl font-bold leading-tight">Web Developer</h2>
+                </div>
+              </div>
+              <p class="mb-6 leading-7 text-slate-600">Build modern, responsive websites and applications that deliver great user experiences.</p>
 
-              <h3 class="text-xl font-semibold leading-tight mb-3">Career Overview</h3>
-              <p class="text-slate-600">Web developers design and build websites, from layout and styling to front-end
+              <h3 class="mb-2 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-circle-info text-green-700" aria-hidden="true"></i>Career Overview</h3>
+              <p class="mb-6 leading-7 text-slate-600">Web developers design and build websites, from layout and styling to front-end
                 logic and back-end integration. They often work in teams to deliver digital products for businesses,
                 organizations, and communities.</p>
 
-              <h3 class="text-xl font-semibold leading-tight mb-3">What Does This Career Do?</h3>
-              <ul class="grid gap-3 list-none mt-4 pl-0">
-                <li>Develop user interfaces and interactive page elements.</li>
-                <li>Collaborate with designers and developers to ship features.</li>
-                <li>Test and optimize websites for responsiveness and performance.</li>
+              <h3 class="mb-2 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-list-check text-green-700" aria-hidden="true"></i>What Does This Career Do?</h3>
+              <ul class="mb-6 mt-3 grid list-none gap-3 pl-0 leading-7">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-code mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Develop user interfaces and interactive page elements.</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-people-group mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Collaborate with designers and developers to ship features.</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-gauge-high mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Test and optimize websites for responsiveness and performance.</span></li>
               </ul>
 
-              <h3 class="text-xl font-semibold leading-tight mb-3">Required Skills</h3>
-              <div class="flex flex-wrap gap-2 mb-4">
+              <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-screwdriver-wrench text-green-700" aria-hidden="true"></i>Required Skills</h3>
+              <div class="mb-6 flex flex-wrap gap-2">
                 <span
                   class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">HTML</span>
                 <span
@@ -143,70 +148,48 @@
                   class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Git</span>
               </div>
 
-              <h3 class="text-xl font-semibold leading-tight mb-3">Technical Skills</h3>
-              <ul class="grid gap-3 list-none mt-4 pl-0">
-                <li>Responsive design principles</li>
-                <li>Frontend frameworks like React</li>
-                <li>Version control and debugging</li>
+              <h3 class="mb-2 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-laptop-code text-green-700" aria-hidden="true"></i>Technical Skills</h3>
+              <ul class="mb-6 mt-3 grid list-none gap-3 pl-0 leading-7">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-mobile-screen-button mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Responsive design principles</span></li>
+                <li class="flex items-start gap-3"><i class="fa-brands fa-react mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Frontend frameworks like React</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-code-branch mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Version control and debugging</span></li>
               </ul>
 
-              <h3 class="text-xl font-semibold leading-tight mb-3">Soft Skills</h3>
-              <ul class="grid gap-3 list-none mt-4 pl-0">
-                <li>Problem-solving</li>
-                <li>Communication</li>
-                <li>Teamwork and adaptability</li>
+              <h3 class="mb-2 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-comments text-green-700" aria-hidden="true"></i>Soft Skills</h3>
+              <ul class="mb-6 mt-3 grid list-none gap-3 pl-0 leading-7">
+                <li class="flex items-start gap-3"><i class="fa-regular fa-lightbulb mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Problem-solving</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-comments mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Communication</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-people-group mt-1 shrink-0 text-green-600" aria-hidden="true"></i><span>Teamwork and adaptability</span></li>
               </ul>
 
-              <h3 class="text-xl font-semibold leading-tight mb-3">Learning Path</h3>
-              <div class="flex items-center justify-between gap-2 mt-4 flex-wrap">
-                <div
-                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 bg-green-50 text-green-600 font-semibold">
-                  Learn</div>
-                <div
-                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 bg-green-50 text-green-600 font-semibold">
-                  Practice</div>
-                <div
-                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 bg-green-50 text-green-600 font-semibold">
-                  Build Projects</div>
-                <div
-                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500 pending">
-                  Internship</div>
-                <div
-                  class="min-w-[110px] flex-1 rounded-xl bg-slate-400/10 px-2 py-2.5 text-center text-xs font-semibold text-slate-500">
-                  Job</div>
+              <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-route text-green-700" aria-hidden="true"></i>Learning Path</h3>
+              <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
+                <div class="flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl bg-green-50 px-3 py-3 text-center text-xs font-semibold text-green-700"><i class="fa-solid fa-book-open text-base" aria-hidden="true"></i>Learn</div>
+                <div class="flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl bg-green-50 px-3 py-3 text-center text-xs font-semibold text-green-700"><i class="fa-solid fa-code text-base" aria-hidden="true"></i>Practice</div>
+                <div class="flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl bg-green-50 px-3 py-3 text-center text-xs font-semibold text-green-700"><i class="fa-solid fa-diagram-project text-base" aria-hidden="true"></i>Build Projects</div>
+                <div class="flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl bg-slate-100 px-3 py-3 text-center text-xs font-semibold text-slate-600"><i class="fa-solid fa-briefcase text-base" aria-hidden="true"></i>Internship</div>
+                <div class="flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl bg-slate-100 px-3 py-3 text-center text-xs font-semibold text-slate-600"><i class="fa-solid fa-user-tie text-base" aria-hidden="true"></i>Job</div>
               </div>
             </article>
 
             <aside class="grid gap-5">
-              <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg h-[350px]">
-                <h3 class="text-xl font-semibold leading-tight mb-3">Career Details</h3>
-                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5"><span>Career
-                    Level</span><strong>Entry-level</strong></div>
-                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5">
-                  <span>Growth</span><strong>High</strong></div>
-                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5">
-                  <span>Skills</span><strong>Frontend, UI, UX</strong></div>
-                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-2.5">
-                  <span>Path</span><strong>Learn <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Practice <i
-                      class="fa-solid fa-arrow-right" aria-hidden="true"></i> Build <i class="fa-solid fa-arrow-right"
-                      aria-hidden="true"></i> Internship</strong></div>
+              <div class="rounded-[22px] border border-slate-200 bg-white p-6 shadow-lg">
+                <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-chart-line text-green-700" aria-hidden="true"></i>Career Details</h3>
+                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-3"><span class="inline-flex items-center gap-2 text-slate-600"><i class="fa-solid fa-layer-group text-green-700" aria-hidden="true"></i>Career Level</span><strong>Entry-level</strong></div>
+                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-3"><span class="inline-flex items-center gap-2 text-slate-600"><i class="fa-solid fa-arrow-trend-up text-green-700" aria-hidden="true"></i>Growth</span><strong>High</strong></div>
+                <div class="flex items-center justify-between gap-3 border-b border-slate-200 py-3"><span class="inline-flex items-center gap-2 text-slate-600"><i class="fa-solid fa-screwdriver-wrench text-green-700" aria-hidden="true"></i>Focus</span><strong>Frontend, UI, UX</strong></div>
+                <div class="flex items-start justify-between gap-3 py-3"><span class="inline-flex items-center gap-2 text-slate-600"><i class="fa-solid fa-route text-green-700" aria-hidden="true"></i>Path</span><strong class="text-right">Learn <i class="fa-solid fa-arrow-right text-green-600" aria-hidden="true"></i> Practice <i class="fa-solid fa-arrow-right text-green-600" aria-hidden="true"></i> Build <i class="fa-solid fa-arrow-right text-green-600" aria-hidden="true"></i> Internship</strong></div>
               </div>
 
-              <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg h-[350px]">
-                <h3 class="text-xl font-semibold leading-tight mb-3">Related Internships</h3>
-                <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600 grid gap-2.5">
-                  <span
-                    class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600 w-fit">Frontend
-                    Developer Intern</span>
-                  <span
-                    class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600 w-fit">UI
-                    Developer Intern</span>
-                  <span
-                    class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600 w-fit">Product
-                    Design Intern</span>
+              <div class="rounded-[22px] border border-slate-200 bg-white p-6 shadow-lg">
+                <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold leading-tight"><i class="fa-solid fa-briefcase text-green-700" aria-hidden="true"></i>Related Internships</h3>
+                <div class="grid gap-2.5">
+                  <a href="./internship.html" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-green-600/40 hover:bg-green-50"><span class="inline-flex items-center gap-2"><i class="fa-solid fa-code text-green-700" aria-hidden="true"></i>Frontend Developer Intern</span><i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400" aria-hidden="true"></i></a>
+                  <a href="./internship.html" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-green-600/40 hover:bg-green-50"><span class="inline-flex items-center gap-2"><i class="fa-solid fa-laptop-code text-green-700" aria-hidden="true"></i>UI Developer Intern</span><i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400" aria-hidden="true"></i></a>
+                  <a href="./internship.html" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-green-600/40 hover:bg-green-50"><span class="inline-flex items-center gap-2"><i class="fa-solid fa-pen-ruler text-green-700" aria-hidden="true"></i>Product Design Intern</span><i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400" aria-hidden="true"></i></a>
                 </div>
                 <div class="flex flex-wrap gap-2.5 mt-[18px]">
-                  <button
+                  <button data-open-internships type="button"
                     class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold bg-green-600 text-white shadow-lg shadow-green-600/20 w-full">Apply
                     Now</button>
                 </div>
