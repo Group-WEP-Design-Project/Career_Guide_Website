@@ -1,0 +1,515 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Career Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+
+<body class="bg-slate-50 font-[Poppins] text-slate-900 leading-relaxed">
+  <div class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div class="relative mx-auto flex min-h-[76px] w-[calc(100%-32px)] max-w-[1180px] items-center justify-between gap-2">
+        <img src="./img/logo.png" alt="Career Guide logo" class="w-[145px]" />
+
+        <nav id="main-nav" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-lg md:static md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-1 md:border-0 md:bg-transparent md:p-0 md:shadow-none" aria-label="Main navigation">
+          <a href="./index.html"
+            class="whitespace-nowrap rounded-xl bg-green-50 px-2 py-2 text-xs font-semibold text-green-600 lg:px-3 lg:text-sm">Home</a>
+          <a href="./internship.html"
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">Internships</a>
+          <a href="./Career.html"
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">Career
+            Guide</a>
+          <a href="./resources.html"
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">Resources</a>
+          <a href="./profile.html"
+            class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">My Profile</a>
+        </nav>
+
+        <a href="./login.html"
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+        <button id="menu-toggle" type="button" aria-controls="main-nav"
+          class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-xl border border-slate-200 bg-white md:hidden"
+          aria-label="Open navigation menu" aria-expanded="false">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="py-10 pb-5">
+        <div class="mx-4 md:mx-8 lg:mx-[128px]">
+          <div class="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+            <div>
+              <span class="inline-block rounded-full bg-[#d0f8d6] px-3 py-2 text-[10px] font-medium text-[#159a8c]">
+                Career growth starts here
+              </span>
+              <h1 class="mt-4 text-4xl font-bold leading-tight text-slate-900 md:text-[44px]">
+                Find Your Internship.
+                <br />
+                Build Your Future.
+              </h1>
+              <p class="mt-4 max-w-[480px] text-base leading-7 text-slate-600">
+                Discover internship opportunities, explore career paths, and build the skills you need for a stronger
+                future.
+              </p>
+
+              <div class="mt-6 flex flex-wrap gap-4">
+                <a href="./internship.html"
+                  class="inline-flex items-center justify-center rounded-xl bg-[#19bd5d] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-green-600/20">
+                  Find Internships
+                </a>
+                <a href="./Career.html"
+                  class="inline-flex items-center justify-center rounded-xl border border-[#19bd5d] bg-white px-5 py-3 text-sm font-semibold text-[#159a8c]">
+                  Explore Career Guide
+                </a>
+              </div>
+
+              <div class="mt-8 flex flex-wrap gap-8">
+                <div>
+                  <strong class="block text-[15px] font-bold text-slate-900">1.2k+</strong>
+                  <span class="text-[9px] text-slate-500">internships</span>
+                </div>
+                <div>
+                  <strong class="block text-[15px] font-bold text-slate-900">150+</strong>
+                  <span class="text-[9px] text-slate-500">companies</span>
+                </div>
+                <div>
+                  <strong class="block text-[15px] font-bold text-slate-900">85%</strong>
+                  <span class="text-[9px] text-slate-500">students placed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between">
+                <div class="items-center gap-3">
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#c8f9d0] text-sm font-bold text-[#159a8c]">
+                    BJ
+                  </div>
+                  <div>
+                     <h3 class="text-[14px] font-bold text-slate-900">Bora</h3>
+                    <p class="text-[10px] text-slate-500">Computer Science</p>
+                  </div>
+                </div>
+                <span class="rounded-full bg-[#e5fae9] px-3 py-1 text-[9px] font-medium text-[#159a8c]">
+                  Available
+                </span>
+              </div>
+
+              <div class="mt-5 grid grid-cols-2 gap-3">
+                <div class="rounded-xl bg-[#e8fbea] p-3">
+                  <strong class="block text-[13px] font-bold text-slate-900">12</strong>
+                  <span class="text-[9px] text-slate-600">Companies</span>
+                </div>
+                <div class="rounded-xl bg-[#e8fbea] p-3">
+                  <strong class="block text-[13px] font-bold text-slate-900">4</strong>
+                  <span class="text-[9px] text-slate-600">Interviews</span>
+                </div>
+                <div class="rounded-xl bg-[#e8fbea] p-3">
+                  <strong class="block text-[13px] font-bold text-slate-900">7</strong>
+                  <span class="text-[9px] text-slate-600">Skills</span>
+                </div>
+                <div class="rounded-xl bg-[#e8fbea] p-3">
+                  <strong class="block text-[13px] font-bold text-slate-900">92%</strong>
+                  <span class="text-[9px] text-slate-600">Profile match</span>
+                </div>
+              </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-[24px] pb-12 pt-0">
+        <div class="mx-4 md:mx-8 lg:mx-[128px]">
+          <div
+            class="mb-7 grid gap-3 rounded-[18px] border border-slate-200 bg-white p-5 lg:grid-cols-6 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
+            <div class="relative">
+              <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                aria-hidden="true"></i>
+              <input
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                type="search" placeholder="Search internship or skill" aria-label="Search internship or skill" data-internship-search />
+            </div>
+            <div class="relative">
+              <select
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                aria-label="Filter by location" data-internship-filter="location">
+                <option>Location</option>
+                <option>Phnom Penh</option>
+                <option>Siem Reap</option>
+                <option>Remote</option>
+              </select>
+            </div>
+            <div class="relative">
+              <select
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                aria-label="Filter by category" data-internship-filter="category">
+                <option>Category</option>
+                <option>Technology</option>
+                <option>Design</option>
+                <option>Marketing</option>
+              </select>
+            </div>
+            <div class="relative">
+              <select
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                aria-label="Filter by type" data-internship-filter="type">
+                <option>Type</option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+                <option>Remote</option>
+              </select>
+            </div>
+            <div class="relative">
+              <select
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                aria-label="Filter by skills" data-internship-filter="skills">
+                <option>Skills</option>
+                <option>JavaScript</option>
+                <option>UI/UX</option>
+                <option>Python</option>
+              </select>
+            </div>
+            <div class="relative">
+              <select
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                aria-label="Filter by duration" data-internship-filter="duration">
+                <option>Duration</option>
+                <option>1 month</option>
+                <option>3 months</option>
+                <option>6 months</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-5 flex items-center justify-between gap-4">
+            <h3 id="internshipResultsCount" class="text-xl font-semibold leading-tight">24 Internship Opportunities</h3>
+            <a href="./internship.html"
+              class="inline-flex items-center justify-center rounded-xl border border-teal-600/20 bg-white px-4 py-2.5 font-semibold text-teal-700">View
+              all</a>
+          </div>
+
+          <div class="index-card-grid grid gap-6 md:grid-cols-2 xl:grid-cols-3 [&>article]:w-full">
+            <article data-internship-card data-internship-id="google-frontend" data-location="ho chi minh city" data-category="technology web" data-type="full-time" data-skills="html css react javascript" data-duration="3 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <div
+                  class="grid h-[52px] w-[52px] place-items-center rounded-2xl bg-blue-500/10 text-lg font-bold text-blue-600">
+                  G</div>
+                <button type="button" data-save-internship data-internship-id="google-frontend" data-internship-title="Frontend Developer Intern" data-internship-company="Google" class="h-9 w-9 rounded-[10px] border border-slate-200 bg-slate-400/10 text-slate-500"
+                  aria-label="Save internship" aria-pressed="false">
+                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                </button>
+              </div>
+              <h3 class="mb-3 text-xl font-semibold leading-tight">Frontend Developer Intern</h3>
+              <p class="text-slate-600">Google</p>
+              <div class="my-3.5 flex flex-wrap gap-x-3 gap-y-2 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot"
+                    aria-hidden="true"></i> Ho Chi Minh City</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece"
+                    aria-hidden="true"></i> Web</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                  3 months</span>
+              </div>
+              <div class="mb-4 flex flex-wrap gap-2">
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">HTML</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">CSS</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">React</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 25 Jun</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <a href="./internship.html"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700">
+                    <i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span>
+                  </a>
+                  <a href="./login.html"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20">
+                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="microsoft-ux" data-location="remote" data-category="design" data-type="remote" data-skills="figma research prototyping ui/ux" data-duration="6 weeks" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <div
+                  class="grid h-[52px] w-[52px] place-items-center rounded-2xl bg-green-700/10 text-lg font-bold text-green-700">
+                  M</div>
+                <button type="button" data-save-internship data-internship-id="microsoft-ux" data-internship-title="UX Design Intern" data-internship-company="Microsoft" class="h-9 w-9 rounded-[10px] border border-slate-200 bg-slate-400/10 text-slate-500"
+                  aria-label="Save internship" aria-pressed="false">
+                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                </button>
+              </div>
+              <h3 class="mb-3 text-xl font-semibold leading-tight">UX Design Intern</h3>
+              <p class="text-slate-600">Microsoft</p>
+              <div class="my-3.5 flex flex-wrap gap-x-3 gap-y-2 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot"
+                    aria-hidden="true"></i> Remote</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-palette" aria-hidden="true"></i>
+                  Design</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                  6 weeks</span>
+              </div>
+              <div class="mb-4 flex flex-wrap gap-2">
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Figma</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Research</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Prototyping</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 30 Jun</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <a href="./internship.html"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700">
+                    <i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span>
+                  </a>
+                  <a href="./login.html"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20">
+                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="shopify-data" data-location="phnom penh" data-category="technology data" data-type="full-time" data-skills="sql python excel" data-duration="4 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg md:col-span-2 xl:col-span-1">
+              <div class="mb-4 flex items-center justify-between">
+                <div
+                  class="grid h-[52px] w-[52px] place-items-center rounded-2xl bg-blue-500/10 text-lg font-bold text-blue-600">
+                  S</div>
+                <button type="button" data-save-internship data-internship-id="shopify-data" data-internship-title="Data Analyst Intern" data-internship-company="Shopify" class="h-9 w-9 rounded-[10px] border border-slate-200 bg-slate-400/10 text-slate-500"
+                  aria-label="Save internship" aria-pressed="false">
+                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                </button>
+              </div>
+              <h3 class="mb-3 text-xl font-semibold leading-tight">Data Analyst Intern</h3>
+              <p class="text-slate-600">Shopify</p>
+              <div class="my-3.5 flex flex-wrap gap-x-3 gap-y-2 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot"
+                    aria-hidden="true"></i> Phnom Penh</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-chart-column"
+                    aria-hidden="true"></i> Data</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                  4 months</span>
+              </div>
+              <div class="mb-4 flex flex-wrap gap-2">
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">SQL</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Python</span>
+                <span
+                  class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Excel</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 02 Jul</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <a href="./internship.html"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700">
+                    <i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span>
+                  </a>
+                  <a href="./login.html"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20">
+                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-[72px]">
+        <div class="w-[calc(100%-64px)] max-w-[1280px] mx-auto">
+          <div class="mb-7">
+            <div class="flex items-end justify-between gap-4 mb-7">
+              <div>
+                <h2 class="text-3xl font-bold leading-tight mb-3">Popular Career Paths</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="index-card-grid grid grid-cols-3 gap-6 max-[960px]:grid-cols-2 max-[680px]:grid-cols-1">
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Web Developer</h3>
+              <p class="text-slate-600">Build responsive websites and interactive user experiences for modern digital
+                products.</p>
+              <div class="flex items-center justify-between gap-3 mt-4 mt-5">
+                <span
+                  class="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-semibold bg-blue-500/10 text-blue-600">Frontend</span>
+                <a href="career-guide.html"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold border border-teal-600/20 bg-white text-teal-700 px-4 py-2.5">View
+                  Career</a>
+              </div>
+            </article>
+
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-palette" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">UI/UX Designer</h3>
+              <p class="text-slate-600">Design intuitive digital experiences through research, prototyping, and visual
+                design.</p>
+              <div class="flex items-center justify-between gap-3 mt-4 mt-5">
+                <span
+                  class="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-semibold bg-sky-600/10 text-sky-600">Design</span>
+                <a href="career-guide.html"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold border border-teal-600/20 bg-white text-teal-700 px-4 py-2.5">View
+                  Career</a>
+              </div>
+            </article>
+
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Mobile Developer</h3>
+              <p class="text-slate-600">Create apps for Android and iOS with a strong focus on usability and
+                performance.</p>
+              <div class="flex items-center justify-between gap-3 mt-4 mt-5">
+                <span
+                  class="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-semibold bg-green-600/10 text-green-600">App</span>
+                <a href="career-guide.html"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold border border-teal-600/20 bg-white text-teal-700 px-4 py-2.5">View
+                  Career</a>
+              </div>
+            </article>
+
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Data Analyst</h3>
+              <p class="text-slate-600">Turn raw data into actionable insights that help teams make better decisions.
+              </p>
+              <div class="flex items-center justify-between gap-3 mt-4 mt-5">
+                <span
+                  class="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-semibold bg-teal-700/10 text-teal-700">Data</span>
+                <a href="career-guide.html"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold border border-teal-600/20 bg-white text-teal-700 px-4 py-2.5">View
+                  Career</a>
+              </div>
+            </article>
+
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-bullhorn" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Digital Marketer</h3>
+              <p class="text-slate-600">Drive online engagement through content, ads, and analytics-driven campaigns.
+              </p>
+              <div class="flex items-center justify-between gap-3 mt-4 mt-5">
+                <span
+                  class="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-semibold bg-orange-500/10 text-orange-600">Marketing</span>
+                <a href="career-guide.html"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold border border-teal-600/20 bg-white text-teal-700 px-4 py-2.5">View
+                  Career</a>
+              </div>
+            </article>
+
+            <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-green-600/10 text-xl mb-3.5"><i
+                  class="fa-solid fa-pen" aria-hidden="true"></i></div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Graphic Designer</h3>
+              <p class="text-slate-600">Design visual identity, campaigns, and creative assets for brands and
+                businesses.</p>
+              <div class="flex items-center justify-between gap-3 mt-4 mt-5">
+                <span
+                  class="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-semibold bg-green-700/10 text-green-700">Creative</span>
+                <a href="career-guide.html"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold border border-teal-600/20 bg-white text-teal-700 px-4 py-2.5">View
+                  Career</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-4 mt-[18px] md:mx-8 lg:mx-[128px]">
+        <div class="mb-5 flex items-center justify-between gap-4">
+          <h2 class="text-xl font-semibold leading-tight">Career Resources</h2>
+          <a href="./resources.html"
+            class="inline-flex items-center justify-center rounded-xl border border-teal-600/20 bg-white px-4 py-2.5 font-semibold text-teal-700">View
+            more</a>
+        </div>
+
+        <div class="index-card-grid grid gap-6 md:grid-cols-2 xl:grid-cols-4 [&>article]:w-full">
+          <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e6fae9] text-xl">📄</div>
+            <h3 class="mt-4 text-lg font-semibold">CV Preparation</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Learn how to write a clear and compelling CV for internship
+              applications.</p>
+            <a href="./resources.html"
+              class="mt-5 inline-flex rounded-lg border border-[#19bd5d] px-4 py-2 text-sm font-semibold text-[#159a8c]">Read
+              More</a>
+          </article>
+          <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e6fae9] text-xl">🎤</div>
+            <h3 class="mt-4 text-lg font-semibold">Interview Tips</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Prepare for common questions and build confidence before
+              your interview day.</p>
+            <a href="./resources.html"
+              class="mt-5 inline-flex rounded-lg border border-[#19bd5d] px-4 py-2 text-sm font-semibold text-[#159a8c]">Read
+              More</a>
+          </article>
+          <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e6fae9] text-xl">💡</div>
+            <h3 class="mt-4 text-lg font-semibold">Career Advice</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Get practical guidance for choosing the right path and
+              making smart decisions.</p>
+            <a href="./resources.html"
+              class="mt-5 inline-flex rounded-lg border border-[#19bd5d] px-4 py-2 text-sm font-semibold text-[#159a8c]">Read
+              More</a>
+          </article>
+          <article class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e6fae9] text-xl">🚀</div>
+            <h3 class="mt-4 text-lg font-semibold">Skill Development</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Explore practical learning paths to strengthen your
+              technical and soft skills.</p>
+            <a href="./resources.html"
+              class="mt-5 inline-flex rounded-lg border border-[#19bd5d] px-4 py-2 text-sm font-semibold text-[#159a8c]">Read
+              More</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="mx-4 mt-[19px] pb-6 md:mx-8 lg:mx-[128px]">
+        <div class="flex items-center justify-between gap-6 rounded-[22px] bg-[#005b27] px-6 py-6 text-white shadow-lg">
+          <div>
+            <h2 class="text-[14px] font-bold">Ready to Start Your Career Journey?</h2>
+            <p class="mt-1 max-w-[400px] text-[9px] text-white/80">Take the next step with internship opportunities and
+              skill-building resources designed for students.</p>
+          </div>
+          <a href="./internship.html"
+            class="inline-flex items-center justify-center rounded-xl bg-[#19bd5d] px-8 py-3 text-[9px] font-semibold text-white">Explore
+            Internships</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-auto bg-[black] text-white/80">
+      <div
+        class="mx-4 flex min-h-[72px] flex-col items-start gap-5 py-6 md:mx-8 md:flex-row md:items-center md:justify-between md:py-0 lg:mx-[128px]">
+        <img src="./img/logo dark mode.jpg" alt="Career Guide" class="w-[200px] max-w-full">
+        <div class="flex w-full flex-wrap items-center gap-x-5 gap-y-3 md:w-auto md:justify-end">
+          <a href="./index.html">Home</a>
+          <a href="./internship.html">Internships</a>
+          <a href="./Career.html">Career Guide</a>
+          <a href="#">Resources</a>
+        </div>
+      </div>
+    </footer>
+  </div> 
+  <script type="module" src="./src/main.ts"></script>
+</body>
+
+</html>
