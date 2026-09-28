@@ -198,3 +198,133 @@ if (internshipList && internshipListToggle) {
 		updateInternshipList();
 	});
 }
+
+const careerProfiles = {
+	"web-developer": {
+		title: "Web Developer",
+		category: "Technology career",
+		summary: "Build modern, responsive websites and applications that deliver great user experiences.",
+		overview: "Web developers design and build websites, from layout and styling to front-end logic and back-end integration. They often work in teams to deliver digital products for businesses, organizations, and communities.",
+		duties: ["Develop user interfaces and interactive page elements.", "Collaborate with designers and developers to ship features.", "Test and optimize websites for responsiveness and performance."],
+		requiredSkills: ["HTML", "CSS", "JavaScript", "React", "Git"],
+		technicalSkills: ["Responsive design principles", "Frontend frameworks like React", "Version control and debugging"],
+		softSkills: ["Problem-solving", "Communication", "Teamwork and adaptability"],
+		level: "Entry-level",
+		growth: "High",
+		focus: "Frontend, UI, UX",
+	},
+	"ui-ux-designer": {
+		title: "UI/UX Designer",
+		category: "Design career",
+		summary: "Design intuitive digital experiences through research, prototyping, and visual design.",
+		overview: "UI/UX designers research what people need, then shape clear and accessible digital products. They create user flows, wireframes, and prototypes, and work with product and engineering teams to improve the experience.",
+		duties: ["Interview users and turn findings into product requirements.", "Create wireframes, prototypes, and polished interface designs.", "Test designs and refine them using user feedback."],
+		requiredSkills: ["Figma", "Prototyping", "User research", "Accessibility", "Usability testing"],
+		technicalSkills: ["Wireframing and prototyping", "Design systems", "Interaction design"],
+		softSkills: ["Empathy", "Communication", "Collaboration"],
+		level: "Entry-level",
+		growth: "High",
+		focus: "Research, interaction, visual design",
+	},
+	"mobile-developer": {
+		title: "Mobile Developer",
+		category: "Technology career",
+		summary: "Create apps for Android and iOS with a strong focus on usability and performance.",
+		overview: "Mobile developers build and maintain applications for phones and tablets. They work with platform-specific or cross-platform tools, connect apps to services, and test across devices to deliver reliable experiences.",
+		duties: ["Build and maintain features for mobile applications.", "Connect apps to APIs and backend services.", "Test app behavior, accessibility, and performance across devices."],
+		requiredSkills: ["Kotlin or Swift", "Flutter or React Native", "REST APIs", "Git", "Testing"],
+		technicalSkills: ["Native or cross-platform development", "Mobile interface patterns", "App performance optimization"],
+		softSkills: ["Problem-solving", "Attention to detail", "Teamwork"],
+		level: "Entry-level",
+		growth: "High",
+		focus: "Android, iOS, mobile apps",
+	},
+	"data-analyst": {
+		title: "Data Analyst",
+		category: "Data career",
+		summary: "Turn raw data into actionable insights that help teams make better decisions.",
+		overview: "Data analysts collect, clean, and examine information to answer business questions. They use queries, statistics, and visualizations to explain trends and help teams choose what to do next.",
+		duties: ["Gather and clean data from reliable sources.", "Analyze trends and answer stakeholder questions.", "Build reports and dashboards that communicate findings."],
+		requiredSkills: ["SQL", "Excel", "Python", "Statistics", "Tableau or Power BI"],
+		technicalSkills: ["Data cleaning and querying", "Statistical analysis", "Dashboard and report creation"],
+		softSkills: ["Critical thinking", "Clear communication", "Attention to detail"],
+		level: "Entry-level",
+		growth: "High",
+		focus: "Analysis, reporting, visualization",
+	},
+	"digital-marketer": {
+		title: "Digital Marketer",
+		category: "Marketing career",
+		summary: "Drive online engagement through content, ads, and analytics-driven campaigns.",
+		overview: "Digital marketers plan and improve campaigns across search, social media, email, and other online channels. They connect audience needs with useful content, then measure results to improve reach and conversions.",
+		duties: ["Plan content and campaigns for digital channels.", "Manage search, social, email, or paid advertising activity.", "Review campaign analytics and recommend improvements."],
+		requiredSkills: ["SEO", "Content marketing", "Web analytics", "Copywriting", "Social media"],
+		technicalSkills: ["Campaign management tools", "Analytics and reporting", "Search and social platforms"],
+		softSkills: ["Creativity", "Communication", "Adaptability"],
+		level: "Entry-level",
+		growth: "High",
+		focus: "Content, campaigns, analytics",
+	},
+	"graphic-designer": {
+		title: "Graphic Designer",
+		category: "Design career",
+		summary: "Design visual identity, campaigns, and creative assets for brands and businesses.",
+		overview: "Graphic designers communicate ideas visually across digital and print formats. They develop layouts, illustrations, and brand assets while balancing a client's goals with audience needs and production requirements.",
+		duties: ["Create graphics and layouts for digital or print use.", "Develop visual assets that follow brand guidelines.", "Prepare files for publication and incorporate feedback."],
+		requiredSkills: ["Typography", "Layout", "Adobe Illustrator", "Adobe Photoshop", "Branding"],
+		technicalSkills: ["Vector and image editing", "Color and composition", "Print and digital file preparation"],
+		softSkills: ["Creativity", "Attention to detail", "Receiving feedback"],
+		level: "Entry-level",
+		growth: "Good",
+		focus: "Branding, layout, visual communication",
+	},
+} as const;
+
+const careerDetails = document.querySelector<HTMLElement>("#career-details");
+if (careerDetails) {
+	const selectedCareer = new URLSearchParams(window.location.search).get("career") as keyof typeof careerProfiles | null;
+	const profile = selectedCareer ? careerProfiles[selectedCareer] : careerProfiles["web-developer"];
+	if (profile) {
+		const setText = (selector: string, text: string) => {
+			const element = careerDetails.querySelector<HTMLElement>(selector);
+			if (element) element.textContent = text;
+		};
+		const setList = (selector: string, items: readonly string[], iconClass: string) => {
+			const list = careerDetails.querySelector<HTMLElement>(selector);
+			if (!list) return;
+			list.replaceChildren(...items.map((item) => {
+				const row = document.createElement("li");
+				row.className = "flex items-start gap-3";
+				const icon = document.createElement("i");
+				icon.className = `${iconClass} mt-1 shrink-0 text-green-600`;
+				icon.setAttribute("aria-hidden", "true");
+				const text = document.createElement("span");
+				text.textContent = item;
+				row.append(icon, text);
+				return row;
+			}));
+		};
+
+		setText("#career-title", profile.title);
+		setText("#career-category", profile.category);
+		setText("#career-summary", profile.summary);
+		setText("#career-overview", profile.overview);
+		setText("#career-level", profile.level);
+		setText("#career-growth", profile.growth);
+		setText("#career-focus", profile.focus);
+		setList("#career-duties", profile.duties, "fa-solid fa-check");
+		setList("#career-technical-skills", profile.technicalSkills, "fa-solid fa-check");
+		setList("#career-soft-skills", profile.softSkills, "fa-solid fa-check");
+
+		const requiredSkills = careerDetails.querySelector<HTMLElement>("#career-required-skills");
+		if (requiredSkills) {
+			requiredSkills.replaceChildren(...profile.requiredSkills.map((skill) => {
+				const tag = document.createElement("span");
+				tag.className = "inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600";
+				tag.textContent = skill;
+				return tag;
+			}));
+		}
+		document.title = `${profile.title} | Career Guide`;
+	}
+}
