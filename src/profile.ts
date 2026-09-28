@@ -2,8 +2,6 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   signOut,
-  updateProfile,
-  verifyBeforeUpdateEmail,
   type User,
 } from "firebase/auth";
 import { get, ref, remove, update } from "firebase/database";
@@ -21,6 +19,12 @@ type CvFile = {
   downloadUrl: string;
 };
 
+type ProfilePhoto = {
+  fileName: string;
+  storagePath?: string;
+  downloadUrl: string;
+};
+
 type SavedInternship = {
   title?: string;
   company?: string;
@@ -35,19 +39,26 @@ type Application = {
 
 type UserProfile = {
   fullName?: string;
+  email?: string;
   university?: string;
   major?: string;
   phone?: string;
   location?: string;
   about?: string;
   skills?: string[];
+  profilePhoto?: ProfilePhoto;
   cv?: CvFile;
   savedInternships?: Record<string, SavedInternship>;
   applications?: Record<string, Application>;
   notificationsEnabled?: boolean;
 };
 
-const profileInitials = document.getElementById("profileInitials") as HTMLDivElement;
+const profileInitials = document.getElementById("profileInitials") as HTMLSpanElement;
+const profilePhotoImage = document.getElementById("profilePhotoImage") as HTMLImageElement;
+const profilePhotoTrigger = document.getElementById("profilePhotoTrigger") as HTMLButtonElement;
+const profilePhotoButton = document.getElementById("profilePhotoButton") as HTMLButtonElement;
+const profilePhotoInput = document.getElementById("profilePhotoInput") as HTMLInputElement;
+const profilePhotoMessage = document.getElementById("profilePhotoMessage") as HTMLParagraphElement;
 const profileName = document.getElementById("profileName") as HTMLHeadingElement;
 const profileUniversity = document.getElementById("profileUniversity") as HTMLParagraphElement;
 const profileMajor = document.getElementById("profileMajor") as HTMLParagraphElement;
@@ -58,7 +69,6 @@ const profileSchool = document.getElementById("profileSchool") as HTMLElement;
 const profileEducationMajor = document.getElementById("profileEducationMajor") as HTMLElement;
 const profilePhone = document.getElementById("profilePhone") as HTMLElement;
 const profileLocation = document.getElementById("profileLocation") as HTMLElement;
-const profileLoginLink = document.getElementById("profileLoginLink") as HTMLAnchorElement;
 const profileEditor = document.getElementById("profileEditor") as HTMLDialogElement;
 const profileEditorForm = document.getElementById("profileEditorForm") as HTMLFormElement;
 const profileSaveMessage = document.getElementById("profileSaveMessage") as HTMLParagraphElement;
@@ -77,11 +87,14 @@ const profileNoSkills = document.getElementById("profileNoSkills") as HTMLParagr
 const profileSavedList = document.getElementById("profileSavedList") as HTMLUListElement;
 const profileSavedEmpty = document.getElementById("profileSavedEmpty") as HTMLParagraphElement;
 const profileApplicationsList = document.getElementById("profileApplicationsList") as HTMLTableSectionElement;
+const profileApplicationStatus = document.getElementById("profileApplicationStatus") as HTMLParagraphElement;
 const profileCvInput = document.getElementById("profileCvInput") as HTMLInputElement;
 const profileCvName = document.getElementById("profileCvName") as HTMLSpanElement;
 const cvMessage = document.getElementById("cvMessage") as HTMLParagraphElement;
 const downloadCvButton = document.getElementById("downloadCvButton") as HTMLButtonElement;
 const notificationSettingsButton = document.getElementById("notificationSettingsButton") as HTMLButtonElement;
+const localProfileKey = "careerGuideProfile";
+const lastProfileUserKey = "careerGuideLastProfileUser";
 let currentProfile: UserProfile = {};
 
 document.getElementById("editProfileButton")?.addEventListener("click", openProfileEditor);
@@ -91,17 +104,15 @@ document.getElementById("addSkillButton")?.addEventListener("click", () => {
   editSkills.focus();
 });
 cancelProfileEdit.addEventListener("click", () => profileEditor.close());
+profilePhotoButton.addEventListener("click", () => profilePhotoInput.click());
+profilePhotoTrigger.addEventListener("click", () => profilePhotoInput.click());
+profilePhotoInput.addEventListener("change", uploadProfilePhoto);
 
 profileEditorForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   showProfileMessage("", false);
 
   const user = auth.currentUser;
-  if (!user) {
-    window.location.replace("./login.html");
-    return;
-  }
-
   const fullName = editFullName.value.trim();
   const newEmail = editEmail.value.trim();
   const skills = [...new Set(editSkills.value.split(",").map((skill) => skill.trim()).filter(Boolean))];
@@ -119,26 +130,16 @@ profileEditorForm.addEventListener("submit", async (event) => {
   saveProfileButton.textContent = "Saving...";
 
   try {
-    const emailChanged = Boolean(user.email && newEmail.toLowerCase() !== user.email.toLowerCase());
-    if (emailChanged) await verifyBeforeUpdateEmail(user, newEmail);
-
-    await update(ref(database, `users/${user.uid}`), updatedProfile);
-    await updateProfile(user, { displayName: fullName });
+    updatedProfile.email = newEmail;
+    saveLocalProfile({ ...currentProfile, ...updatedProfile }, user);
     currentProfile = { ...currentProfile, ...updatedProfile };
     renderProfile(user, currentProfile);
-
-    if (emailChanged) {
-      profileSaveMessage.classList.remove("text-red-600");
-      profileSaveMessage.classList.add("text-green-700");
-      showProfileMessage("Profile saved. Check your email to confirm the address change.", false);
-    } else {
-      profileEditor.close();
-    }
+    profileEditor.close();
   } catch (error) {
-    console.error("Unable to save profile details:", error);
+    console.error("Unable to save profile details in this browser:", error);
     profileSaveMessage.classList.remove("text-green-700");
     profileSaveMessage.classList.add("text-red-600");
-    showProfileMessage(getProfileErrorMessage(error), true);
+    showProfileMessage("Unable to save profile details in this browser. Check available storage space and try again.", true);
   } finally {
     saveProfileButton.disabled = false;
     saveProfileButton.textContent = "Save changes";
@@ -230,48 +231,39 @@ notificationSettingsButton.addEventListener("click", async () => {
 });
 
 onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.replace("./login.html");
-    return;
-  }
-
   void loadProfile(user);
 });
 
 document.getElementById("logoutButton")?.addEventListener("click", async () => {
   try {
     await signOut(auth);
-    window.location.replace("./login.html");
   } catch (error) {
     console.error("Unable to log out:", error);
     alert("Unable to log out right now. Please try again.");
   }
 });
 
-async function loadProfile(user: User) {
-  currentProfile = {};
+async function loadProfile(user: User | null) {
+  if (user) localStorage.setItem(lastProfileUserKey, user.uid);
+  currentProfile = loadLocalProfile(user?.uid);
 
-  try {
-    const snapshot = await get(ref(database, `users/${user.uid}`));
-    currentProfile = snapshot.val() as UserProfile | null ?? {};
-  } catch (error) {
-    console.error("Unable to load profile details:", error);
+  if (user) {
+    try {
+      const snapshot = await get(ref(database, `users/${user.uid}`));
+      currentProfile = { ...(snapshot.val() as UserProfile | null ?? {}), ...currentProfile };
+    } catch (error) {
+      console.error("Unable to load account records:", error);
+    }
   }
 
   renderProfile(user, currentProfile);
-  profileLoginLink.classList.add("hidden");
   document.body.hidden = false;
 }
 
 function openProfileEditor() {
   const user = auth.currentUser;
-  if (!user) {
-    window.location.replace("./login.html");
-    return;
-  }
-
-  editFullName.value = currentProfile.fullName ?? user.displayName ?? "";
-  editEmail.value = user.email ?? "";
+  editFullName.value = currentProfile.fullName ?? user?.displayName ?? "";
+  editEmail.value = currentProfile.email ?? user?.email ?? "";
   editUniversity.value = currentProfile.university ?? "";
   editMajor.value = currentProfile.major ?? "";
   editPhone.value = currentProfile.phone ?? "";
@@ -333,19 +325,98 @@ async function uploadCv() {
   }
 }
 
-function renderProfile(user: User, userProfile: UserProfile) {
-  const fullName = userProfile.fullName || user.displayName || user.email?.split("@")[0] || "User";
+async function uploadProfilePhoto() {
+  const file = profilePhotoInput.files?.[0];
+  if (!file) return;
+
+  const supportedTypes = ["image/jpeg", "image/png", "image/webp"];
+  if (!supportedTypes.includes(file.type)) {
+    showProfilePhotoMessage("Choose a JPG, PNG, or WebP image.", true);
+    profilePhotoInput.value = "";
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    showProfilePhotoMessage("The image must be 5 MB or smaller.", true);
+    profilePhotoInput.value = "";
+    return;
+  }
+
+  profilePhotoButton.disabled = true;
+  profilePhotoButton.textContent = "Uploading...";
+  showProfilePhotoMessage("Uploading profile photo...", false);
+
+  try {
+    const profilePhoto: ProfilePhoto = {
+      fileName: file.name,
+      downloadUrl: await createLocalPhotoDataUrl(file),
+    };
+    currentProfile.profilePhoto = profilePhoto;
+    saveLocalProfile(currentProfile, auth.currentUser);
+    renderProfile(auth.currentUser, currentProfile);
+    showProfilePhotoMessage("Profile photo saved in this browser.", false);
+  } catch (error) {
+    console.error("Unable to save profile photo in this browser:", error);
+    showProfilePhotoMessage("Unable to save the photo in this browser. Try a smaller image or clear some browser storage.", true);
+  } finally {
+    profilePhotoButton.disabled = false;
+    profilePhotoButton.textContent = currentProfile.profilePhoto ? "Change photo" : "Add photo";
+    profilePhotoInput.value = "";
+  }
+}
+
+async function createLocalPhotoDataUrl(file: File) {
+  const image = await createImageBitmap(file);
+  const scale = Math.min(1, 512 / Math.max(image.width, image.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.round(image.width * scale));
+  canvas.height = Math.max(1, Math.round(image.height * scale));
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("Canvas is unavailable");
+  context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  image.close();
+
+  const compressedImage = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("Image compression failed")), "image/jpeg", 0.82);
+  });
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => typeof reader.result === "string" ? resolve(reader.result) : reject(new Error("Image reading failed"));
+    reader.onerror = () => reject(reader.error ?? new Error("Image reading failed"));
+    reader.readAsDataURL(compressedImage);
+  });
+}
+
+function loadLocalProfile(userId?: string): UserProfile {
+  const profileId = userId || localStorage.getItem(lastProfileUserKey) || "guest";
+  try {
+    return JSON.parse(localStorage.getItem(`${localProfileKey}:${profileId}`) || "{}") as UserProfile;
+  } catch {
+    return {};
+  }
+}
+
+function saveLocalProfile(profile: UserProfile, user: User | null) {
+  const profileId = user?.uid || localStorage.getItem(lastProfileUserKey) || "guest";
+  localStorage.setItem(`${localProfileKey}:${profileId}`, JSON.stringify(profile));
+}
+
+function renderProfile(user: User | null, userProfile: UserProfile) {
+  const fullName = userProfile.fullName || user?.displayName || user?.email?.split("@")[0] || "User";
   const university = userProfile.university || "Not provided";
   const major = userProfile.major || "Not provided";
   const nameParts = fullName.trim().split(/\s+/).filter(Boolean);
   const initials = nameParts.slice(0, 2).map((part) => part[0].toUpperCase()).join("");
 
   profileInitials.textContent = initials || "U";
+  profilePhotoImage.hidden = !userProfile.profilePhoto?.downloadUrl;
+  if (userProfile.profilePhoto?.downloadUrl) profilePhotoImage.src = userProfile.profilePhoto.downloadUrl;
+  profilePhotoTrigger.setAttribute("aria-label", userProfile.profilePhoto ? "Change profile photo" : "Add profile photo");
+  profilePhotoButton.textContent = userProfile.profilePhoto ? "Change photo" : "Add photo";
   profileName.textContent = fullName;
   profileUniversity.textContent = userProfile.university || "";
   profileMajor.textContent = userProfile.major || "";
   profileFullName.textContent = fullName;
-  profileEmail.textContent = user.email || "Not provided";
+  profileEmail.textContent = userProfile.email || user?.email || "Not provided";
   profileSchool.textContent = university;
   profileEducationMajor.textContent = major;
   profilePhone.textContent = userProfile.phone || "Not provided";
@@ -393,7 +464,9 @@ function renderSavedInternships(savedInternships: Record<string, SavedInternship
   for (const [id, internship] of items) {
     const item = document.createElement("li");
     item.className = "flex items-center justify-between gap-3 border-b border-slate-200 py-2.5";
-    const details = document.createElement("span");
+    const details = document.createElement("a");
+    details.href = "./internship.html";
+    details.className = "text-teal-700 hover:text-green-700 hover:underline";
     details.textContent = [internship.title || "Internship", internship.company].filter(Boolean).join(" · ");
     const removeButton = document.createElement("button");
     removeButton.type = "button";
@@ -410,6 +483,7 @@ function renderApplications(applications: Record<string, Application>) {
   profileApplicationsList.replaceChildren();
 
   if (entries.length === 0) {
+    profileApplicationStatus.textContent = "No application updates yet.";
     const row = document.createElement("tr");
     const cell = document.createElement("td");
     cell.colSpan = 4;
@@ -419,6 +493,14 @@ function renderApplications(applications: Record<string, Application>) {
     profileApplicationsList.append(row);
     return;
   }
+
+  const statusCounts = new Map<string, number>();
+  for (const application of entries) {
+    const status = application.status || "Applied";
+    statusCounts.set(status, (statusCounts.get(status) ?? 0) + 1);
+  }
+  const statusSummary = Array.from(statusCounts, ([status, count]) => `${status}: ${count}`).join(", ");
+  profileApplicationStatus.textContent = `${entries.length} application${entries.length === 1 ? "" : "s"} tracked. ${statusSummary}.`;
 
   for (const application of entries) {
     const row = document.createElement("tr");
@@ -456,10 +538,10 @@ function showCvMessage(message: string, isError: boolean) {
   cvMessage.classList.toggle("text-slate-600", !isError);
 }
 
-function getProfileErrorMessage(error: unknown) {
-  const errorCode = (error as { code?: string }).code;
-  if (errorCode === "auth/email-already-in-use") return "That email address is already connected to another account.";
-  if (errorCode === "auth/invalid-email") return "Enter a valid email address.";
-  if (errorCode === "auth/requires-recent-login") return "Sign in again before changing your email address.";
-  return "Unable to save your changes. Please try again.";
+
+function showProfilePhotoMessage(message: string, isError: boolean) {
+  profilePhotoMessage.textContent = message;
+  profilePhotoMessage.hidden = !message;
+  profilePhotoMessage.classList.toggle("text-red-600", isError);
+  profilePhotoMessage.classList.toggle("text-slate-600", !isError);
 }

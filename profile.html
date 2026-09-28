@@ -39,8 +39,35 @@
                         class="whitespace-nowrap rounded-xl bg-green-50 px-2 py-2 text-xs font-semibold text-green-600 lg:px-3 lg:text-sm">My
                         Profile</a>
                 </nav>
-                <a id="profileLoginLink" href="./login.html"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+                <div id="accountArea" class="relative">
+                    <a id="accountLoginLink" href="./login.html"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+                    <button id="accountMenuButton" type="button" aria-controls="accountMenu" aria-expanded="false" hidden
+                        class="inline-flex max-w-[180px] items-center gap-2 rounded-xl border border-teal-600/20 bg-white px-2 py-2 text-left text-xs font-semibold text-slate-800 lg:px-3 lg:py-2.5">
+                        <span id="accountAvatar" class="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full bg-green-100 text-sm font-bold text-green-700">
+                            <span id="accountAvatarInitials">U</span>
+                            <img id="accountAvatarImage" class="absolute inset-0 h-full w-full object-cover" alt="" hidden />
+                        </span>
+                        <span id="accountButtonName" class="max-w-[90px] truncate lg:max-w-[120px]">Account</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-slate-500" aria-hidden="true"></i>
+                    </button>
+                    <section id="accountMenu" aria-label="Account information" hidden
+                        class="absolute right-0 top-full z-[60] mt-2 w-[min(300px,calc(100vw-32px))] rounded-xl border border-slate-200 bg-white p-4 shadow-xl">
+                        <div class="border-b border-slate-200 pb-3">
+                            <p id="accountMenuName" class="font-semibold text-slate-900">Account</p>
+                            <p id="accountEmail" class="break-all text-xs text-slate-600"></p>
+                        </div>
+                        <div class="grid gap-1.5 py-3 text-xs text-slate-600">
+                            <p id="accountUniversity">School not added</p>
+                            <p id="accountMajor">Major not added</p>
+                            <p id="accountActivity">0 saved internships · 0 applications</p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-slate-200 pt-3">
+                            <a href="./profile.html" class="font-semibold text-teal-700 hover:text-green-700">My Profile</a>
+                            <button id="accountSignOutButton" type="button" class="font-semibold text-red-600 hover:text-red-700">Sign out</button>
+                        </div>
+                    </section>
+                </div>
                 <button id="menu-toggle" type="button" aria-controls="main-nav"
                     class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-xl border border-slate-200 bg-white md:hidden"
                     aria-label="Open navigation menu" aria-expanded="false"><i class="fa-solid fa-bars"
@@ -52,19 +79,29 @@
                 <div class="w-[calc(100%-32px)] max-w-[1180px] mx-auto">
                     <div class="flex items-center justify-between gap-5 py-6 pb-4">
                         <div class="flex items-center gap-5">
-                            <div id="profileInitials"
-                                class="grid place-items-center w-[88px] h-[88px] rounded-[28px] bg-gradient-to-br from-blue-100 to-green-100 text-3xl font-bold">
-                            </div>
+                            <button id="profilePhotoTrigger" type="button" aria-label="Add profile photo"
+                                class="group relative grid h-[88px] w-[88px] shrink-0 place-items-center overflow-hidden rounded-[28px] bg-gradient-to-br from-blue-100 to-green-100 text-3xl font-bold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-600/30">
+                                <span id="profileInitials">U</span>
+                                <img id="profilePhotoImage" class="absolute inset-0 h-full w-full object-cover" alt="Your profile photo" hidden />
+                                <span class="absolute bottom-1 right-1 z-10 grid h-7 w-7 place-items-center rounded-full border-2 border-white bg-white/90 text-xs text-teal-700 shadow-sm transition group-hover:bg-green-100">
+                                    <i class="fa-solid fa-camera" aria-hidden="true"></i>
+                                </span>
+                            </button>
                             <div>
                                 <h1 id="profileName" class="mb-1.5"></h1>
                                 <p id="profileUniversity" class="text-slate-600"></p>
                                 <p id="profileMajor" class="text-slate-600"></p>
                             </div>
                         </div>
-                        <button id="editProfileButton" type="button"
-                            class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold border border-teal-600/20 bg-white text-teal-700">Edit
-                            Profile</button>
+                        <div class="flex flex-wrap gap-2">
+                            <button id="profilePhotoButton" type="button"
+                                class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-4 py-3 font-semibold text-teal-700">Add photo</button>
+                            <button id="editProfileButton" type="button"
+                                class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-5 py-3 font-semibold text-teal-700">Edit Profile</button>
+                        </div>
                     </div>
+                    <input id="profilePhotoInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
+                    <p id="profilePhotoMessage" class="mt-2 text-sm text-slate-600" role="status" aria-live="polite" hidden></p>
 
                     <div class="rounded-[22px] border border-slate-200 bg-white p-6 shadow-lg mt-2.5">
                         <h3 class="text-xl font-semibold leading-tight mb-3">About Me</h3>
@@ -224,7 +261,7 @@
                     <label class="text-sm font-medium">Email
                         <input id="editEmail" type="email" autocomplete="email"
                             class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2.5 font-normal outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20"
-                            required />
+                            />
                     </label>
                     <label class="text-sm font-medium">University / School
                         <input id="editUniversity" type="text" maxlength="100"

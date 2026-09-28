@@ -39,8 +39,35 @@
             class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">My
             Profile</a>
         </nav>
-        <a href="./login.html"
-          class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+        <div id="accountArea" class="relative">
+          <a id="accountLoginLink" href="./login.html"
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+          <button id="accountMenuButton" type="button" aria-controls="accountMenu" aria-expanded="false" hidden
+            class="inline-flex max-w-[180px] items-center gap-2 rounded-xl border border-teal-600/20 bg-white px-2 py-2 text-left text-xs font-semibold text-slate-800 lg:px-3 lg:py-2.5">
+            <span id="accountAvatar" class="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full bg-green-100 text-sm font-bold text-green-700">
+              <span id="accountAvatarInitials">U</span>
+              <img id="accountAvatarImage" class="absolute inset-0 h-full w-full object-cover" alt="" hidden />
+            </span>
+            <span id="accountButtonName" class="max-w-[90px] truncate lg:max-w-[120px]">Account</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-500" aria-hidden="true"></i>
+          </button>
+          <section id="accountMenu" aria-label="Account information" hidden
+            class="absolute right-0 top-full z-[60] mt-2 w-[min(300px,calc(100vw-32px))] rounded-xl border border-slate-200 bg-white p-4 shadow-xl">
+            <div class="border-b border-slate-200 pb-3">
+              <p id="accountMenuName" class="font-semibold text-slate-900">Account</p>
+              <p id="accountEmail" class="break-all text-xs text-slate-600"></p>
+            </div>
+            <div class="grid gap-1.5 py-3 text-xs text-slate-600">
+              <p id="accountUniversity">School not added</p>
+              <p id="accountMajor">Major not added</p>
+              <p id="accountActivity">0 saved internships · 0 applications</p>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-200 pt-3">
+              <a href="./profile.html" class="font-semibold text-teal-700 hover:text-green-700">My Profile</a>
+              <button id="accountSignOutButton" type="button" class="font-semibold text-red-600 hover:text-red-700">Sign out</button>
+            </div>
+          </section>
+        </div>
         <button id="menu-toggle" type="button" aria-controls="main-nav"
           class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-xl border border-slate-200 bg-white md:hidden"
           aria-label="Open navigation menu" aria-expanded="false"><i class="fa-solid fa-bars"
@@ -122,14 +149,14 @@
           </div>
 
           <div class="flex items-center justify-between gap-4 mb-5">
-            <h3 id="internshipResultsCount" class="text-xl font-semibold leading-tight mb-3">24 Internship Opportunities
+            <h3 id="internshipResultsCount" class="text-xl font-semibold leading-tight mb-3">12 Internship Opportunities
             </h3>
-            <button data-reset-filters type="button"
+            <button data-toggle-internship-list type="button" aria-expanded="false"
               class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-4 py-2.5 font-semibold text-teal-700"><span>View
                 all</span></button>
           </div>
 
-          <div class="grid grid-cols-3 gap-6 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
+          <div data-internship-list class="grid grid-cols-3 gap-6 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
             <article data-internship-card data-internship-id="google-frontend" data-location="ho chi minh city"
               data-category="technology web" data-type="full-time" data-skills="html css react javascript"
               data-duration="3 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
@@ -270,13 +297,298 @@
                 </div>
               </div>
             </article>
+
+            <article data-internship-card data-internship-id="aba-backend" data-location="phnom penh"
+              data-category="technology backend" data-type="full-time" data-skills="python sql git"
+              data-duration="3 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-red-500/10 font-bold text-red-600">A</div>
+                <button type="button" data-save-internship data-internship-id="aba-backend"
+                  data-internship-title="Backend Developer Intern" data-internship-company="ABA Bank"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart"
+                    aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Backend Developer Intern</h3>
+              <p class="text-slate-600">ABA Bank</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Phnom Penh</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Technology</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 3 months</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Python</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">SQL</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Git</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 15 Jul</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="aba-backend" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="wing-marketing" data-location="siem reap"
+              data-category="marketing" data-type="part-time" data-skills="content seo analytics"
+              data-duration="1 month" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-orange-500/10 font-bold text-orange-600">W</div>
+                <button type="button" data-save-internship data-internship-id="wing-marketing"
+                  data-internship-title="Digital Marketing Intern" data-internship-company="Wing Bank"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart"
+                    aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Digital Marketing Intern</h3>
+              <p class="text-slate-600">Wing Bank</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Siem Reap</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Marketing</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 1 month</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Content</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">SEO</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Analytics</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 20 Jul</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="wing-marketing" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="smart-design" data-location="remote"
+              data-category="design" data-type="remote" data-skills="figma ui/ux illustrator"
+              data-duration="6 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-green-500/10 font-bold text-green-700">S</div>
+                <button type="button" data-save-internship data-internship-id="smart-design"
+                  data-internship-title="Graphic Design Intern" data-internship-company="Smart Axiata"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart"
+                    aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Graphic Design Intern</h3>
+              <p class="text-slate-600">Smart Axiata</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Remote</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-palette" aria-hidden="true"></i> Design</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 6 months</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Figma</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">UI/UX</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Illustrator</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 28 Jul</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="smart-design" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="khmer-enterprise-qa" data-location="phnom penh"
+              data-category="technology qa" data-type="full-time" data-skills="javascript testing selenium"
+              data-duration="3 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-indigo-500/10 font-bold text-indigo-600">K</div>
+                <button type="button" data-save-internship data-internship-id="khmer-enterprise-qa"
+                  data-internship-title="QA Engineer Intern" data-internship-company="Khmer Enterprise"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">QA Engineer Intern</h3>
+              <p class="text-slate-600">Khmer Enterprise</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Phnom Penh</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Technology</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 3 months</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">JavaScript</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Testing</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Selenium</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 15 Oct</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="khmer-enterprise-qa" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="pipedrive-product-design" data-location="remote"
+              data-category="design product" data-type="remote" data-skills="figma ui/ux research"
+              data-duration="6 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-violet-500/10 font-bold text-violet-600">P</div>
+                <button type="button" data-save-internship data-internship-id="pipedrive-product-design"
+                  data-internship-title="Product Design Intern" data-internship-company="Pipedrive"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Product Design Intern</h3>
+              <p class="text-slate-600">Pipedrive</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Remote</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-palette" aria-hidden="true"></i> Design</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 6 months</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Figma</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">UI/UX</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Research</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 18 Oct</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="pipedrive-product-design" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="cellcard-social-media" data-location="phnom penh"
+              data-category="marketing social" data-type="part-time" data-skills="content social media analytics"
+              data-duration="3 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-cyan-500/10 font-bold text-cyan-700">C</div>
+                <button type="button" data-save-internship data-internship-id="cellcard-social-media"
+                  data-internship-title="Social Media Intern" data-internship-company="Cellcard"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Social Media Intern</h3>
+              <p class="text-slate-600">Cellcard</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Phnom Penh</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Marketing</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 3 months</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Content</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Social Media</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Analytics</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 22 Oct</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="cellcard-social-media" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="grab-mobile-dev" data-location="remote"
+              data-category="technology mobile" data-type="remote" data-skills="flutter dart api"
+              data-duration="6 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-green-500/10 font-bold text-green-700">G</div>
+                <button type="button" data-save-internship data-internship-id="grab-mobile-dev"
+                  data-internship-title="Mobile App Developer Intern" data-internship-company="Grab"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Mobile App Developer Intern</h3>
+              <p class="text-slate-600">Grab</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Remote</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Technology</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 6 months</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Flutter</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Dart</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">APIs</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 25 Oct</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="grab-mobile-dev" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="khmer-bev-data" data-location="siem reap"
+              data-category="technology data" data-type="full-time" data-skills="python sql tableau"
+              data-duration="4 months" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-amber-500/10 font-bold text-amber-700">K</div>
+                <button type="button" data-save-internship data-internship-id="khmer-bev-data"
+                  data-internship-title="Data Science Intern" data-internship-company="Khmer Beverages"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Data Science Intern</h3>
+              <p class="text-slate-600">Khmer Beverages</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Siem Reap</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Technology</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 4 months</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Python</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">SQL</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Tableau</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 28 Oct</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="khmer-bev-data" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
+
+            <article data-internship-card data-internship-id="bookme-content-marketing" data-location="remote"
+              data-category="marketing content" data-type="part-time" data-skills="writing seo content"
+              data-duration="1 month" class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
+              <div class="flex items-center justify-between mb-4">
+                <div class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-pink-500/10 font-bold text-pink-600">B</div>
+                <button type="button" data-save-internship data-internship-id="bookme-content-marketing"
+                  data-internship-title="Content Marketing Intern" data-internship-company="BookMeBus"
+                  class="w-38px h-38px rounded-[10px] border border-slate-200 bg-slate-400/10"
+                  aria-label="Save internship" aria-pressed="false"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight mb-3">Content Marketing Intern</h3>
+              <p class="text-slate-600">BookMeBus</p>
+              <div class="flex flex-wrap gap-x-3 gap-y-2 my-3.5 text-sm text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Remote</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Marketing</span>
+                <span class="inline-flex items-center gap-1.5"><i class="fa-regular fa-calendar" aria-hidden="true"></i> 1 month</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Writing</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">SEO</span>
+                <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs text-slate-600">Content</span>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-orange-600">Deadline: 30 Oct</span>
+                <div class="ml-auto flex w-full max-w-[200px] shrink-0 flex-col gap-2">
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 font-semibold text-teal-700" data-view-details type="button"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>View Details</span></button>
+                  <button class="inline-flex w-full whitespace-nowrap items-center justify-center gap-2 rounded-xl bg-green-600 px-3 py-2 font-semibold text-white shadow-lg shadow-green-600/20" data-apply-internship data-internship-id="bookme-content-marketing" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Apply Now</span></button>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
       <section class="py-[72px] ">
         <div class="mx-4 mt-5 grid gap-6 md:mx-8 lg:mx-[128px] lg:grid-cols-[1.2fr_.8fr] max-[680px]:grid-cols-1">
-          <article class="rounded-3xl border border-slate-200 bg-white p-7 leading-7 shadow-lg">
+          <article data-internship-id="stripe-software" data-location-label="Phnom Penh / Remote"
+            data-duration="3 months" data-deadline="12 Jul" data-category-label="Software Engineering"
+            data-skills-label="JavaScript, TypeScript, React, REST APIs"
+            class="rounded-3xl border border-slate-200 bg-white p-7 leading-7 shadow-lg">
             <div class="flex items-center justify-between mb-4">
               <div
                 class="grid place-items-center w-[52px] h-[52px] rounded-2xl bg-blue-500/10 font-bold text-blue-600 bg-blue-500/10 text-blue-600">
@@ -376,6 +688,51 @@
       </section>
     </main>
 
+    <dialog id="internshipDialog"
+      class="w-[calc(100%-32px)] max-w-[560px] rounded-2xl border border-slate-200 bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-900/50">
+      <div class="p-6 sm:p-8">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="text-sm font-semibold text-green-700">Internship opportunity</p>
+            <h2 id="internshipDialogTitle" class="mt-1 text-2xl font-bold leading-tight"></h2>
+            <p id="internshipDialogCompany" class="mt-1 text-slate-600"></p>
+          </div>
+          <button type="button" data-close-internship-dialog
+            class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-600"
+            aria-label="Close dialog"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+
+        <p id="internshipDialogSummary" class="mt-5 leading-7 text-slate-600"></p>
+        <dl class="mt-5 grid grid-cols-2 gap-4 border-y border-slate-200 py-4 text-sm">
+          <div><dt class="text-slate-500">Location</dt><dd id="internshipDialogLocation" class="mt-1 font-semibold"></dd></div>
+          <div><dt class="text-slate-500">Category</dt><dd id="internshipDialogCategory" class="mt-1 font-semibold"></dd></div>
+          <div><dt class="text-slate-500">Duration</dt><dd id="internshipDialogDuration" class="mt-1 font-semibold"></dd></div>
+          <div><dt class="text-slate-500">Deadline</dt><dd id="internshipDialogDeadline" class="mt-1 font-semibold"></dd></div>
+        </dl>
+        <div class="mt-4">
+          <h3 class="text-sm font-semibold">Skills</h3>
+          <p id="internshipDialogSkills" class="mt-1 text-sm leading-6 text-slate-600"></p>
+        </div>
+        <p id="internshipDialogMessage" class="mt-5 rounded-lg bg-slate-50 p-4 text-sm leading-6 text-slate-600"
+          aria-live="polite"></p>
+        <div class="mt-6 flex flex-wrap justify-end gap-3">
+          <a id="internshipResearchLink" href="#" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700">
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Research employer</a>
+          <a id="internshipLoginLink" href="./login.html" hidden
+            class="inline-flex items-center justify-center rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white">Log in to apply</a>
+          <a id="internshipProfileLink" href="./profile.html" hidden
+            class="inline-flex items-center justify-center rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white">View My Profile</a>
+          <button id="internshipDetailsApply" type="button"
+            class="inline-flex items-center justify-center rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white">Apply Now</button>
+          <button id="internshipConfirmApplication" type="button" hidden
+            class="inline-flex items-center justify-center rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white">Save to My Profile</button>
+          <button type="button" data-close-internship-dialog
+            class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700">Close</button>
+        </div>
+      </div>
+    </dialog>
+
     <footer class="mt-auto bg-[black] text-white/80">
       <div
         class="mx-4 flex min-h-[72px] flex-col items-start gap-5 py-6 md:mx-8 md:flex-row md:items-center md:justify-between md:py-0 lg:mx-[128px]">
@@ -390,6 +747,7 @@
     </footer>
   </div>
   <script type="module" src="./src/main.ts"></script>
+  <script type="module" src="./src/internship.ts"></script>
 
 </body>
 

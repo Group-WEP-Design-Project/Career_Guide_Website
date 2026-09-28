@@ -36,8 +36,35 @@
             class="whitespace-nowrap rounded-xl px-2 py-2 text-xs text-slate-600 hover:bg-green-50 hover:text-green-600 lg:px-3 lg:text-sm">My Profile</a>
         </nav>
 
-        <a href="./login.html"
-          class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+        <div id="accountArea" class="relative">
+          <a id="accountLoginLink" href="./login.html"
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-3 py-2 text-xs font-semibold text-teal-700 lg:px-5 lg:py-3 lg:text-sm">Login</a>
+          <button id="accountMenuButton" type="button" aria-controls="accountMenu" aria-expanded="false" hidden
+            class="inline-flex max-w-[180px] items-center gap-2 rounded-xl border border-teal-600/20 bg-white px-2 py-2 text-left text-xs font-semibold text-slate-800 lg:px-3 lg:py-2.5">
+            <span id="accountAvatar" class="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full bg-green-100 text-sm font-bold text-green-700">
+              <span id="accountAvatarInitials">U</span>
+              <img id="accountAvatarImage" class="absolute inset-0 h-full w-full object-cover" alt="" hidden />
+            </span>
+            <span id="accountButtonName" class="max-w-[90px] truncate lg:max-w-[120px]">Account</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-500" aria-hidden="true"></i>
+          </button>
+          <section id="accountMenu" aria-label="Account information" hidden
+            class="absolute right-0 top-full z-[60] mt-2 w-[min(300px,calc(100vw-32px))] rounded-xl border border-slate-200 bg-white p-4 shadow-xl">
+            <div class="border-b border-slate-200 pb-3">
+              <p id="accountMenuName" class="font-semibold text-slate-900">Account</p>
+              <p id="accountEmail" class="break-all text-xs text-slate-600"></p>
+            </div>
+            <div class="grid gap-1.5 py-3 text-xs text-slate-600">
+              <p id="accountUniversity">School not added</p>
+              <p id="accountMajor">Major not added</p>
+              <p id="accountActivity">0 saved internships · 0 applications</p>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-200 pt-3">
+              <a href="./profile.html" class="font-semibold text-teal-700 hover:text-green-700">My Profile</a>
+              <button id="accountSignOutButton" type="button" class="font-semibold text-red-600 hover:text-red-700">Sign out</button>
+            </div>
+          </section>
+        </div>
         <button id="menu-toggle" type="button" aria-controls="main-nav"
           class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-xl border border-slate-200 bg-white md:hidden"
           aria-label="Open navigation menu" aria-expanded="false">
@@ -91,42 +118,27 @@
               </div>
             </div>
 
-            <!-- <div class="rounded-[22px] border border-slate-200 bg-white p-5 shadow-lg">
-              <div class="flex items-center justify-between">
-                <div class="items-center gap-3">
-                  <div
-                    class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#c8f9d0] text-sm font-bold text-[#159a8c]">
-                    BJ
-                  </div>
-                  <div>
-                     <h3 class="text-[14px] font-bold text-slate-900">Bora</h3>
-                    <p class="text-[10px] text-slate-500">Computer Science</p>
-                  </div>
+            <aside class="relative overflow-hidden rounded-[22px] border border-t-4 border-slate-200 border-t-green-500 bg-white p-6 shadow-lg" aria-label="Your profile preview">
+              <div class="relative flex items-center gap-4">
+                <div class="relative grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-2xl bg-green-100 text-2xl font-bold text-green-700">
+                  <span id="homeProfileInitials">U</span>
+                  <img id="homeProfilePhoto" class="absolute inset-0 h-full w-full object-cover" alt="Your profile photo" hidden />
                 </div>
-                <span class="rounded-full bg-[#e5fae9] px-3 py-1 text-[9px] font-medium text-[#159a8c]">
-                  Available
-                </span>
+                <div class="min-w-0">
+                  <p class="text-xs font-semibold uppercase text-green-700">Your profile</p>
+                  <h2 id="homeProfileName" class="mt-1 truncate text-xl font-bold text-slate-900">Sign in to view your profile</h2>
+                  <p id="homeProfileEducation" class="mt-1 truncate text-sm text-slate-600">Your school and major will appear here</p>
+                </div>
               </div>
-
-              <div class="mt-5 grid grid-cols-2 gap-3">
-                <div class="rounded-xl bg-[#e8fbea] p-3">
-                  <strong class="block text-[13px] font-bold text-slate-900">12</strong>
-                  <span class="text-[9px] text-slate-600">Companies</span>
-                </div>
-                <div class="rounded-xl bg-[#e8fbea] p-3">
-                  <strong class="block text-[13px] font-bold text-slate-900">4</strong>
-                  <span class="text-[9px] text-slate-600">Interviews</span>
-                </div>
-                <div class="rounded-xl bg-[#e8fbea] p-3">
-                  <strong class="block text-[13px] font-bold text-slate-900">7</strong>
-                  <span class="text-[9px] text-slate-600">Skills</span>
-                </div>
-                <div class="rounded-xl bg-[#e8fbea] p-3">
-                  <strong class="block text-[13px] font-bold text-slate-900">92%</strong>
-                  <span class="text-[9px] text-slate-600">Profile match</span>
-                </div>
-              </div> -->
-            <!-- </div> -->
+              <p id="homeProfileAbout" class="relative mt-5 line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-slate-600">Add a photo and a short introduction to make your profile your own.</p>
+              <div class="relative mt-4 flex flex-wrap gap-2">
+                <span id="homeProfileSkillCount" class="rounded-full bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-800">0 skills</span>
+                <span id="homeProfileSavedCount" class="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">0 saved internships</span>
+              </div>
+              <a href="./profile.html" class="relative mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 hover:text-green-700">
+                View and edit profile <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+              </a>
+            </aside>
           </div>
         </div>
       </section>
@@ -513,6 +525,7 @@
       </div>
     </footer>
   </div> 
+  <script src="./src/internship.ts"></script>
   <script type="module" src="./src/main.ts"></script>
 </body>
 
