@@ -199,6 +199,18 @@ if (internshipList && internshipListToggle) {
 	});
 }
 
+document.querySelectorAll<HTMLButtonElement>("[data-resource-toggle]").forEach((toggle) => {
+	const details = document.getElementById(toggle.dataset.resourceToggle ?? "");
+	if (!details) return;
+
+	toggle.addEventListener("click", () => {
+		const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+		toggle.setAttribute("aria-expanded", String(!isExpanded));
+		toggle.textContent = isExpanded ? "Read More" : "Show Less";
+		details.hidden = isExpanded;
+	});
+});
+
 const careerProfiles = {
 	"web-developer": {
 		title: "Web Developer",
