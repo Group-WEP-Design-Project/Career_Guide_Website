@@ -18,6 +18,7 @@
 
 <body class="bg-slate-50 font-[Poppins] text-slate-900 leading-relaxed" hidden>
     <div class="min-h-screen flex flex-col">
+        <!-- Header / Navigation -->
         <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
             <div
                 class="relative w-[calc(100%-32px)] max-w-[1180px] mx-auto flex items-center justify-between min-h-[76px] gap-2">
@@ -79,6 +80,7 @@
                         aria-hidden="true"></i></button>
         </header>
 
+        <!-- Main Content -->
         <main>
             <section class="bg-green-600/5 py-10 pb-5">
                 <div class="mx-4 md:mx-8 lg:mx-[128px]">
@@ -120,6 +122,7 @@
                 </div>
             </section>
 
+            <!-- Personal Information & Skills Section -->
             <section class="py-[72px] pt-3">
                 <div
                     class="mx-4 md:mx-8 lg:mx-[128px] grid grid-cols-[1.1fr_1.5fr] gap-6 mt-6 max-[980px]:grid-cols-2 max-[580px]:grid-cols-1">
@@ -175,6 +178,7 @@
                 </div>
             </section>
 
+            <!-- CV & Application Status Section -->
             <section class="py-[72px] pt-1">
                 <div
                     class="mx-4 md:mx-8 lg:mx-[128px] grid grid-cols-[1.1fr_1.5fr] gap-6 mt-6 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
@@ -192,6 +196,9 @@
                                     CV</button>
                                 <button id="replaceCvButton" type="button"
                                     class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-4 py-3 font-semibold text-teal-700">Replace
+                                    CV</button>
+                                <button id="viewCvButton" type="button" disabled
+                                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-teal-600/20 bg-white px-4 py-3 font-semibold text-teal-700 disabled:cursor-not-allowed disabled:opacity-50">View
                                     CV</button>
                                 <button id="downloadCvButton" type="button" disabled
                                     class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50">Download
@@ -211,6 +218,7 @@
                 </div>
             </section>
 
+            <!-- Saved Internships / Additional Profile Content Section -->
             <section class="py-[72px] pt-1">
                 <div class="mx-4 md:mx-8 lg:mx-[128px]">
                     <div
@@ -330,6 +338,7 @@
             </form>
         </dialog>
 
+        <!-- Footer -->
         <footer class="mt-auto bg-[black] text-white/80">
             <div
                 class="mx-4 flex min-h-[72px] flex-col items-start gap-5 py-6 md:mx-8 md:flex-row md:items-center md:justify-between md:py-0 lg:mx-[128px]">

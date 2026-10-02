@@ -15,7 +15,7 @@ import { auth, database, storage } from "./firebase";
 
 type CvFile = {
   fileName: string;
-  storagePath: string;
+  storagePath?: string;
   downloadUrl: string;
 };
 
@@ -91,6 +91,7 @@ const profileApplicationStatus = document.getElementById("profileApplicationStat
 const profileCvInput = document.getElementById("profileCvInput") as HTMLInputElement;
 const profileCvName = document.getElementById("profileCvName") as HTMLSpanElement;
 const cvMessage = document.getElementById("cvMessage") as HTMLParagraphElement;
+const viewCvButton = document.getElementById("viewCvButton") as HTMLButtonElement;
 const downloadCvButton = document.getElementById("downloadCvButton") as HTMLButtonElement;
 const notificationSettingsButton = document.getElementById("notificationSettingsButton") as HTMLButtonElement;
 const localProfileKey = "careerGuideProfile";
@@ -187,6 +188,16 @@ document.getElementById("uploadCvButton")?.addEventListener("click", () => profi
 document.getElementById("replaceCvButton")?.addEventListener("click", () => profileCvInput.click());
 profileCvInput.addEventListener("change", uploadCv);
 
+viewCvButton.addEventListener("click", () => {
+  const cv = currentProfile.cv;
+  if (!cv?.downloadUrl) return;
+
+  const newWindow = window.open(cv.downloadUrl, "_blank", "noopener,noreferrer");
+  if (!newWindow) {
+    alert("Your browser blocked the CV preview. Please allow pop-ups and try again.");
+  }
+});
+
 downloadCvButton.addEventListener("click", () => {
   const cv = currentProfile.cv;
   if (!cv?.downloadUrl) return;
@@ -198,6 +209,18 @@ downloadCvButton.addEventListener("click", () => {
   link.download = cv.fileName;
   link.click();
 });
+
+async function readFileAsDataUrl(file: File): Promise<string> {
+  return await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") resolve(reader.result);
+      else reject(new Error("Unable to read CV file."));
+    };
+    reader.onerror = () => reject(reader.error ?? new Error("Unable to read CV file."));
+    reader.readAsDataURL(file);
+  });
+}
 
 document.getElementById("changePasswordButton")?.addEventListener("click", async () => {
   const email = auth.currentUser?.email;
@@ -279,7 +302,7 @@ function openProfileEditor() {
 async function uploadCv() {
   const file = profileCvInput.files?.[0];
   const user = auth.currentUser;
-  if (!file || !user) return;
+  if (!file) return;
 
   if (!file.name.toLowerCase().endsWith(".pdf") || (file.type && file.type !== "application/pdf")) {
     showCvMessage("Choose a PDF file.", true);
@@ -289,6 +312,23 @@ async function uploadCv() {
   if (file.size > 5 * 1024 * 1024) {
     showCvMessage("The PDF must be 5 MB or smaller.", true);
     profileCvInput.value = "";
+    return;
+  }
+
+  const fileDataUrl = await readFileAsDataUrl(file);
+  const localCv: CvFile = {
+    fileName: file.name,
+    downloadUrl: fileDataUrl,
+  };
+
+  currentProfile.cv = localCv;
+  saveLocalProfile(currentProfile, user);
+  renderCv(localCv);
+  showCvMessage("CV saved in this browser. Uploading to your account...", false);
+  profileCvInput.value = "";
+
+  if (!user) {
+    showCvMessage("CV saved on this device. Sign in to sync it to your account.", false);
     return;
   }
 
@@ -308,6 +348,7 @@ async function uploadCv() {
     await update(ref(database, `users/${user.uid}`), { cv });
     const previousPath = currentProfile.cv?.storagePath;
     currentProfile.cv = cv;
+    saveLocalProfile(currentProfile, user);
     renderCv(cv);
     showCvMessage("CV uploaded successfully.", false);
 
@@ -319,9 +360,10 @@ async function uploadCv() {
   } catch (error) {
     if (uploadedReference) await deleteObject(uploadedReference).catch(() => undefined);
     console.error("Unable to upload CV:", error);
-    showCvMessage("Unable to upload the CV. Check Firebase Storage access and try again.", true);
-  } finally {
-    profileCvInput.value = "";
+    currentProfile.cv = localCv;
+    saveLocalProfile(currentProfile, user);
+    renderCv(localCv);
+    showCvMessage("Unable to upload the CV to your account, but it is saved on this device.", true);
   }
 }
 
@@ -516,6 +558,7 @@ function renderApplications(applications: Record<string, Application>) {
 
 function renderCv(cv?: CvFile) {
   profileCvName.textContent = cv?.fileName || "No CV uploaded";
+  viewCvButton.disabled = !cv?.downloadUrl;
   downloadCvButton.disabled = !cv?.downloadUrl;
 }
 
