@@ -178,25 +178,86 @@ if (menuToggle && mainNav) {
 const internshipList = document.querySelector<HTMLElement>("[data-internship-list]");
 const internshipListToggle = document.querySelector<HTMLButtonElement>("[data-toggle-internship-list]");
 
+let isInternshipListExpanded = false;
+
 if (internshipList && internshipListToggle) {
 	const cards = Array.from(internshipList.querySelectorAll<HTMLElement>("[data-internship-card]"));
 	const initialCardCount = 3;
 	const label = internshipListToggle.querySelector("span");
-	let isExpanded = false;
 
 	const updateInternshipList = () => {
 		cards.forEach((card, index) => {
-			card.hidden = !isExpanded && index >= initialCardCount;
+			const isHiddenByFilter = card.hidden;
+			card.hidden = isHiddenByFilter || (!isInternshipListExpanded && index >= initialCardCount);
 		});
-		internshipListToggle.setAttribute("aria-expanded", String(isExpanded));
-		if (label) label.textContent = isExpanded ? "Show fewer" : `View all (${cards.length})`;
+		internshipListToggle.setAttribute("aria-expanded", String(isInternshipListExpanded));
+		if (label) label.textContent = isInternshipListExpanded ? "Show fewer" : `View all (${cards.length})`;
 	};
 
 	updateInternshipList();
 	internshipListToggle.addEventListener("click", () => {
-		isExpanded = !isExpanded;
+		isInternshipListExpanded = !isInternshipListExpanded;
 		updateInternshipList();
 	});
+}
+
+const normalizeInternshipText = (value: string | null | undefined) =>
+	(value ?? "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+
+const internshipSearchInput = document.querySelector<HTMLInputElement>("[data-internship-search]");
+const internshipFilters = Array.from(document.querySelectorAll<HTMLSelectElement>("[data-internship-filter]"));
+const internshipCards = Array.from(document.querySelectorAll<HTMLElement>("[data-internship-card]"));
+const internshipResultsCount = document.querySelector<HTMLElement>("#internshipResultsCount");
+
+if (internshipSearchInput || internshipFilters.length || internshipCards.length) {
+	const syncInternshipSearch = () => {
+		const searchText = normalizeInternshipText(internshipSearchInput?.value ?? "");
+		const filterValues = new Map<string, string>();
+
+		internshipFilters.forEach((filter) => {
+			const key = filter.dataset.internshipFilter ?? "";
+			const value = normalizeInternshipText(filter.value);
+			if (key && value && !["location", "category", "type", "skills", "duration"].includes(value)) {
+				filterValues.set(key, value);
+			}
+		});
+
+		let visibleCount = 0;
+		internshipCards.forEach((card, index) => {
+			const summary = [
+				card.dataset.internshipId ?? "",
+				card.dataset.location ?? "",
+				card.dataset.category ?? "",
+				card.dataset.type ?? "",
+				card.dataset.skills ?? "",
+				card.dataset.duration ?? "",
+				card.querySelector("h2, h3")?.textContent ?? "",
+				card.querySelector("p")?.textContent ?? "",
+				card.textContent ?? "",
+			].join(" ");
+			const normalizedSummary = normalizeInternshipText(summary);
+
+			const locationPass = !filterValues.get("location") || normalizeInternshipText(card.dataset.location).includes(filterValues.get("location") ?? "");
+			const categoryPass = !filterValues.get("category") || normalizeInternshipText(card.dataset.category).includes(filterValues.get("category") ?? "");
+			const typePass = !filterValues.get("type") || normalizeInternshipText(card.dataset.type).includes(filterValues.get("type") ?? "");
+			const skillPass = !filterValues.get("skills") || normalizeInternshipText(card.dataset.skills).includes(filterValues.get("skills") ?? "");
+			const durationPass = !filterValues.get("duration") || normalizeInternshipText(card.dataset.duration).includes(filterValues.get("duration") ?? "");
+			const searchPass = !searchText || normalizedSummary.includes(searchText);
+			const matches = locationPass && categoryPass && typePass && skillPass && durationPass && searchPass;
+			const shouldHideByListState = Boolean(internshipList) && !isInternshipListExpanded && index >= 3;
+			card.hidden = !matches || shouldHideByListState;
+			if (matches) visibleCount += 1;
+		});
+
+		if (internshipResultsCount) {
+			const label = visibleCount === 1 ? "Internship Opportunity" : "Internship Opportunities";
+			internshipResultsCount.textContent = `${visibleCount} ${label}`;
+		}
+	};
+
+	internshipSearchInput?.addEventListener("input", syncInternshipSearch);
+	internshipFilters.forEach((filter) => filter.addEventListener("change", syncInternshipSearch));
+	syncInternshipSearch();
 }
 
 document.querySelectorAll<HTMLButtonElement>("[data-resource-toggle]").forEach((toggle) => {
