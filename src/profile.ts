@@ -176,7 +176,9 @@ profileSavedList.addEventListener("click", async (event) => {
 
   try {
     await remove(ref(database, `users/${user.uid}/savedInternships/${savedId}`));
-    if (currentProfile.savedInternships) delete currentProfile.savedInternships[savedId];
+    currentProfile.savedInternships ??= {};
+    delete currentProfile.savedInternships[savedId];
+    saveLocalProfile(currentProfile, user);
     renderSavedInternships(currentProfile.savedInternships ?? {});
   } catch (error) {
     console.error("Unable to remove saved internship:", error);
@@ -273,7 +275,13 @@ async function loadProfile(user: User | null) {
   if (user) {
     try {
       const snapshot = await get(ref(database, `users/${user.uid}`));
-      currentProfile = { ...(snapshot.val() as UserProfile | null ?? {}), ...currentProfile };
+      const accountProfile = snapshot.val() as UserProfile | null ?? {};
+      currentProfile = {
+        ...accountProfile,
+        ...currentProfile,
+        savedInternships: accountProfile.savedInternships ?? {},
+      };
+      saveLocalProfile(currentProfile, user);
     } catch (error) {
       console.error("Unable to load account records:", error);
     }
