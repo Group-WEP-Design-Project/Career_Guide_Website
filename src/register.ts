@@ -60,7 +60,7 @@ registerForm.addEventListener("submit", async (event) => {
       createdAt: new Date().toISOString()
     });
 
-    alert("បង្កើត Account បានជោគជ័យ!");
+    alert("create account success! Please login to continue.");
 
     // ទៅ Login Page
     window.location.href = "login.html";
@@ -70,13 +70,13 @@ registerForm.addEventListener("submit", async (event) => {
     console.error(error);
 
     if (error.code === "auth/email-already-in-use") {
-      alert("Email នេះមាន Account រួចហើយ!");
+      alert("Email has account already!");
     } else if (error.code === "auth/invalid-email") {
-      alert("សូមបញ្ចូល Email ឱ្យបានត្រឹមត្រូវ!");
+      alert("put you email correctly!");
     } else if (error.code === "auth/weak-password") {
-      alert("Password ត្រូវមានយ៉ាងហោចណាស់ 6 តួ!");
+      alert("Password have 6 letter or more!");
     } else {
-      alert("បង្កើត Account មិនបានទេ!");
+      alert("create account failed! Please try again later.");
     }
 
   }

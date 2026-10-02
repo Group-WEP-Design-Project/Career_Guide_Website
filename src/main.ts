@@ -187,8 +187,8 @@ if (internshipList && internshipListToggle) {
 
 	const updateInternshipList = () => {
 		cards.forEach((card, index) => {
-			const isHiddenByFilter = card.hidden;
-			card.hidden = isHiddenByFilter || (!isInternshipListExpanded && index >= initialCardCount);
+			const matchesFilters = card.dataset.matchesFilter !== "false";
+			card.hidden = !matchesFilters || (!isInternshipListExpanded && index >= initialCardCount);
 		});
 		internshipListToggle.setAttribute("aria-expanded", String(isInternshipListExpanded));
 		if (label) label.textContent = isInternshipListExpanded ? "Show fewer" : `View all (${cards.length})`;
@@ -244,6 +244,7 @@ if (internshipSearchInput || internshipFilters.length || internshipCards.length)
 			const durationPass = !filterValues.get("duration") || normalizeInternshipText(card.dataset.duration).includes(filterValues.get("duration") ?? "");
 			const searchPass = !searchText || normalizedSummary.includes(searchText);
 			const matches = locationPass && categoryPass && typePass && skillPass && durationPass && searchPass;
+			card.dataset.matchesFilter = String(matches);
 			const shouldHideByListState = Boolean(internshipList) && !isInternshipListExpanded && index >= 3;
 			card.hidden = !matches || shouldHideByListState;
 			if (matches) visibleCount += 1;
